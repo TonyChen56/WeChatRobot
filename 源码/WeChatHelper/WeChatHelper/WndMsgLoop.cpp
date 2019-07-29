@@ -26,9 +26,10 @@ void InitWindow(HMODULE hModule)
 	//检查当前微信版本
 	if (IsWxVersionValid())
 	{
+		Sleep(100);
 		//获取WeChatWin的基址
 		DWORD dwWeChatWinAddr = (DWORD)GetModuleHandle(L"WeChatWin.dll");
-
+	
 		//检测微信是否登陆
 		DWORD dwIsLogin = dwWeChatWinAddr + LoginSign_Offset + 0x194;
 		if (*(DWORD*)dwIsLogin == 0)	//等于0说明微信未登录
