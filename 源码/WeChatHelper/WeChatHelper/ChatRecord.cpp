@@ -10,6 +10,7 @@ using namespace std;
 
 BOOL g_AutoChat = FALSE;	//是否自动聊天
 BOOL isSendTuLing = FALSE;	//是否已经发给了图灵机器人
+BOOL isText = TRUE;			//是否是文字消息
 wchar_t tempwxid[50] = { 0 };	//存放微信ID
 
 DWORD r_esp = 0;
@@ -247,13 +248,34 @@ void SendWxMessage()
 		//如果是图灵机器人发来的消息 并且消息已经发送给图灵机器人
 		if ((StrCmpW(msg->wxid,L"gh_ab370b2e4b62")==0)&&isSendTuLing==TRUE)
 		{
-			wchar_t tempcontent[0x100] = { 0 };
-			//拿到消息内容 发送给好友
-			LPVOID pContent = *((LPVOID *)(**msgAddress + 0x68));
-			swprintf_s(tempcontent, L"%s", (wchar_t*)pContent);;
-			SendTextMessage(tempwxid, tempcontent);
-			isSendTuLing = FALSE;
+			wchar_t tempcontent[0x200] = { 0 };
+			//首先判断机器人回复的消息类型 如果不是文字 直接回复
+			if (msgType!=0x01)
+			{
+				SendTextMessage(tempwxid, (wchar_t*)L"啦啦啦");
+				isSendTuLing = FALSE;
+			}
+			//再次判断发送给机器人的消息类型
+			else if (isText == FALSE)
+			{
+				SendTextMessage(tempwxid, (wchar_t*)L"亲 不支持此类消息哦 请发文字 么么哒");
+				isSendTuLing = FALSE;
+				isText = TRUE;
+			}
+			else   //如果是文字 再次判断长度
+			{
+				//接着拿到消息内容 发送给好友
+				LPVOID pContent = *((LPVOID *)(**msgAddress + 0x68));
+				swprintf_s(tempcontent, L"%s", (wchar_t*)pContent);
+				//判断返回的消息是否过长
+				if (wcslen(tempcontent) > 0x100)
+				{
+					wcscpy_s(tempcontent, wcslen(L"啦啦啦"), L"啦啦啦");
+				}
 
+				SendTextMessage(tempwxid, tempcontent);
+				isSendTuLing = FALSE;
+			}
 		}
 		else
 		{
@@ -354,12 +376,25 @@ void SendWxMessage()
 	//这里处理自动聊天
 	if (isFriendMsg == TRUE && g_AutoChat == TRUE)
 	{
+		//判断消息类型
+		if (msgType != 0x01)
+		{
+			isText = FALSE;
+		}
 		//保存一下微信ID
 		wcscpy_s(tempwxid, wcslen(msg->wxid) + 1, msg->wxid);
+
+		//判断消息内容是否是你好
+		if (wcscmp(msg->content, L"你好") == 0)
+		{
+			swprintf_s(msg->content, L"%s", L"哈喽");
+		}
+
+		
+
 		//拿到消息内容 发给图灵机器人
 		SendTextMessage((wchar_t*)L"gh_ab370b2e4b62", msg->content);
-		isSendTuLing =TRUE;	
-
+		isSendTuLing = TRUE;
 	}
 }
 
