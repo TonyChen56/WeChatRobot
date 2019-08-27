@@ -216,7 +216,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lParam)
 			AddGroupMem *addgroupmember = (AddGroupMem*)pCopyData->lpData;
 			AddGroupMember(addgroupmember->chatroomid, addgroupmember->wxid);
 		}
-
+		break;
 		//·¢ËÍÃûÆ¬
 		case WM_SendXmlCard:
 		{
