@@ -165,6 +165,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lParam)
 			SendTextMessage(textmessage->wxid,textmessage->content);
 			
 		}
+		break;
 		//发送文件消息
 		case WM_SendFileMessage:
 		{
