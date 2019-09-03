@@ -29,8 +29,7 @@ struct Information
 // 返 回 值: void 
 //************************************************************
 void GetInformation()
-{
-	
+{	
 	//昵称：WeChatWin.dll + 126D91C
 	//微信账号：WeChatWin.dll + 126DA80
 	//手机号：WeChatWin.dll + 126d950
@@ -45,6 +44,19 @@ void GetInformation()
 
 	//获取WeChatWin的基址
 	DWORD dwWeChatWinAddr = (DWORD)GetModuleHandle(L"WeChatWin.dll");
+
+	//微信ID
+	char wxid[0x1000] = { 0 };
+	DWORD pWxid = dwWeChatWinAddr + 0x126D8A4;
+	sprintf_s(wxid, "%s", (char*)(*(DWORD*)pWxid));
+	if (strlen(wxid) < 40)
+	{
+		wcscpy_s(info->wxid, wcslen(UTF8ToUnicode(wxid)) + 1, UTF8ToUnicode(wxid));
+	}
+	else
+	{
+		wcscpy_s(info->wxid, wcslen(L"微信ID暂时无法显示") + 1, L"微信ID暂时无法显示");
+	}
 
 	//微信性别
 	char sex[4] = { 0 };
@@ -95,11 +107,6 @@ void GetInformation()
 	sprintf_s(city, "%s", (char*)(dwWeChatWinAddr + 0x126DA20));
 	wcscpy_s(info->city, wcslen(UTF8ToUnicode(city)) + 1, UTF8ToUnicode(city));
 
-	//微信ID
-	char wxid[40] = { 0 };
-	DWORD pWxid = dwWeChatWinAddr + 0x126D8A4;
-	sprintf_s(wxid, "%s", (char*)(*(DWORD*)pWxid));
-	wcscpy_s(info->wxid, wcslen(UTF8ToUnicode(wxid)) + 1, UTF8ToUnicode(wxid));
 
 	//头像
 	char header[0x100] = { 0 };
