@@ -316,7 +316,7 @@ void SendWxMessage()
 	else if (isOther == TRUE)
 	{
 		//取出消息内容
-		wchar_t tempcontent[0x1000] = { 0 };
+		wchar_t tempcontent[0x10000] = { 0 };
 		LPVOID pContent = *((LPVOID *)(**msgAddress + 0x68));
 		swprintf_s(tempcontent, L"%s", (wchar_t*)pContent);
 		//判断是否是转账消息
@@ -329,8 +329,17 @@ void SendWxMessage()
 		}
 		else
 		{
-			//判断是否是转账消息
-			swprintf_s(msg->content, L"%s", L"收到共享实时位置、文件、链接等其他消息,请在手机上查看");
+			//判断消息长度 如果长度超过就不显示
+			if (wcslen(tempcontent) > 200)
+			{
+				swprintf_s(msg->content, L"%s", L"消息内容过长 已经过滤");
+			}
+			else
+			{
+				//判断是否是转账消息
+				swprintf_s(msg->content, L"%s", L"收到共享实时位置、文件、链接等其他消息,请在手机上查看");
+			}
+			
 		}
 	}
 	else if (isLocationMessage == TRUE)
