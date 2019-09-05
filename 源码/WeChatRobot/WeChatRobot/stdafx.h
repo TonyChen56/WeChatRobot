@@ -10,6 +10,7 @@
 #endif
 
 #include "targetver.h"
+#define _CRT_SECURE_NO_DEPRECATE 0
 
 #define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS      // 某些 CString 构造函数将是显式的
 
