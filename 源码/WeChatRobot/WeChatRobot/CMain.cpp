@@ -58,7 +58,6 @@ BEGIN_MESSAGE_MAP(CMain, CDialogEx)
 	ON_WM_COPYDATA()
 	ON_COMMAND(ID_32779, &CMain::OnPayAuthor)
 	ON_COMMAND(ID_32778, &CMain::OnAboutAuthor)
-	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
 
@@ -70,7 +69,7 @@ BOOL CMain::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
-	TCHAR Name[3][5] = { L"好友列表", L"聊天记录", L"功能大全" };
+	TCHAR Name[3][5] = { L"好友列表",L"聊天记录" , L"功能大全" };
 	for (int i = 0; i < 3; i++)
 	{
 		m_MyTable.InsertItem(i, Name[i]);
@@ -195,14 +194,4 @@ void CMain::OnAboutAuthor()
 {
 	CAboutAuthor about;
 	about.DoModal();
-}
-
-
-void CMain::OnClose()
-{
-	if (::MessageBox(NULL, L"确定要退出吗？", L"退出", MB_YESNO) == IDYES)
-	{
-		CDialogEx::OnClose();
-	}
-
 }
