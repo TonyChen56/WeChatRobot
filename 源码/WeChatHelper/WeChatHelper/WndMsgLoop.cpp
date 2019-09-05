@@ -26,7 +26,6 @@ void InitWindow(HMODULE hModule)
 	//检查当前微信版本
 	if (IsWxVersionValid())
 	{
-		Sleep(100);
 		//获取WeChatWin的基址
 		DWORD dwWeChatWinAddr = (DWORD)GetModuleHandle(L"WeChatWin.dll");
 	
