@@ -48,7 +48,7 @@ BOOL CAboutAuthor::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	m_kanxue = L"鬼手_277636";
+	m_kanxue = L"鬼手56";
 	m_wuaipojie = L"鬼手56";
 	m_github = L"https://github.com/TonyChen56";
 	m_csdn = L"https://blog.csdn.net/qq_38474570";

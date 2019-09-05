@@ -87,7 +87,7 @@ void CheckIsLogin()
 			HWND hLogin = FindWindow(NULL, L"Login");
 			if (hLogin == NULL)
 			{
-				MessageBoxA(NULL, "未查找到Login窗口", "错误", MB_OK);
+				OutputDebugStringA("未查找到Login窗口");
 				return;
 			}
 			COPYDATASTRUCT login_msg;

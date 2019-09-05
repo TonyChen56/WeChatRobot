@@ -118,7 +118,7 @@ void GetInformation()
 	HWND hInformation = FindWindow(NULL, L"Information");
 	if (hInformation == NULL)
 	{
-		MessageBoxA(NULL, "未查找到Information窗口", "错误", MB_OK);
+		OutputDebugStringA("未查找到Information窗口");
 		return;
 	}
 	COPYDATASTRUCT information_msg;

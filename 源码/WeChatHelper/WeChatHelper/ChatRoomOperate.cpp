@@ -258,7 +258,7 @@ void ShowChatRoomUser(wchar_t* chatroomwxid)
 	HWND hWnd = FindWindow(NULL, TEXT("ChatRoomMember"));
 	if (hWnd == NULL)
 	{
-		MessageBoxA(NULL, "未找到ChatRoomMember窗口", "错误", 0);
+		OutputDebugStringA("未查找到ChatRoomMember窗口");
 		return;
 	}
 
@@ -551,10 +551,6 @@ void DelRoomMember(wchar_t* roomid, wchar_t* memberwxid)
 	dwDatabuf[0] = (DWORD)& wxidbuff;
 	dwDatabuf[1] = dwDatabuf[0] + 0x14;
 	dwDatabuf[2] = dwDatabuf[0] + 0x14;
-
-	char tempbuff[50] = { 0 };
-	sprintf_s(tempbuff, "%p", DelRoomMember);
-	MessageBoxA(NULL, tempbuff, "地址", 0);
 
 
 	//调用删除群成员call

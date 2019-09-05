@@ -59,7 +59,7 @@ void InitWindow(HMODULE hModule)
 			HWND hLogin = FindWindow(NULL, L"Login");
 			if (hLogin == NULL)
 			{
-				MessageBoxA(NULL, "未查找到Login窗口", "错误", MB_OK);
+				OutputDebugStringA("未查找到Login窗口");
 				return;
 			}
 			COPYDATASTRUCT login_msg;
@@ -286,7 +286,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lParam)
 			};
 			AtMsg *msg = (AtMsg*)pCopyData->lpData;
 			SendRoomAtMsg(msg->chatroomid,msg->memberwxid,msg->membernickname,msg->msgcontent);
-
 		}
 		break;
 		//删除群成员
@@ -301,8 +300,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lParam)
 			DelRoomMember(msg->roomid, msg->memberwxid);
 		}
 		break;
-
-
 		default:
 			break;
 		}

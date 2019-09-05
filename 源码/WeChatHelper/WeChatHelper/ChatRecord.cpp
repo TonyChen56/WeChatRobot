@@ -373,7 +373,7 @@ void SendWxMessage()
 	HWND hWnd = FindWindow(NULL, TEXT("微信助手"));
 	if (hWnd == NULL)
 	{
-		MessageBoxA(NULL, "未找到微信助手窗口", "发送端", MB_OK);
+		OutputDebugStringA("未查找到微信助手窗口");
 	}
 
 	COPYDATASTRUCT chatmsg;
@@ -416,23 +416,17 @@ void SendWxMessage()
 // 参    数: DWORD memAddress  目标地址
 // 返 回 值: LPCWSTR	消息内容
 //************************************************************
-LPCWSTR GetMsgByAddress(DWORD memAddress)
+std::wstring GetMsgByAddress(DWORD memAddress)
 {
-	//获取字符串长度
+	wstring tmp;
 	DWORD msgLength = *(DWORD*)(memAddress + 4);
-	if (msgLength == 0)
-	{
-		WCHAR* msg = new WCHAR[1];
-		msg[0] = 0;
-		return msg;
+	if (msgLength > 0) {
+		WCHAR* msg = new WCHAR[msgLength + 1]{ 0 };
+		wmemcpy_s(msg, msgLength + 1, (WCHAR*)(*(DWORD*)memAddress), msgLength + 1);
+		tmp = msg;
+		delete[]msg;
 	}
-
-	WCHAR* msg = new WCHAR[msgLength + 1];
-	ZeroMemory(msg, msgLength + 1);
-
-	//复制内容
-	wmemcpy_s(msg, msgLength + 1, (WCHAR*)(*(DWORD*)memAddress), msgLength + 1);
-	return msg;
+	return  tmp;
 }
 
 
