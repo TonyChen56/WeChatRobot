@@ -27,4 +27,5 @@ public:
 	afx_msg BOOL OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct);
 	afx_msg void OnPayAuthor();
 	afx_msg void OnAboutAuthor();
+	afx_msg void OnClose();
 };

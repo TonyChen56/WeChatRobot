@@ -58,6 +58,7 @@ BEGIN_MESSAGE_MAP(CMain, CDialogEx)
 	ON_WM_COPYDATA()
 	ON_COMMAND(ID_32779, &CMain::OnPayAuthor)
 	ON_COMMAND(ID_32778, &CMain::OnAboutAuthor)
+	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
 
@@ -194,4 +195,14 @@ void CMain::OnAboutAuthor()
 {
 	CAboutAuthor about;
 	about.DoModal();
+}
+
+
+void CMain::OnClose()
+{
+	if (::MessageBox(NULL, L"确定要退出吗？", L"退出", MB_YESNO) == IDYES)
+	{
+		CDialogEx::OnClose();
+	}
+
 }

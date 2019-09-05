@@ -9,7 +9,7 @@
 #include "CInjectTools.h"
 #include "CMain.h"
 
-
+HANDLE wxPid = NULL;		//微信的PID
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -109,8 +109,8 @@ BOOL CWeChatRobotDlg::OnInitDialog()
 	RunSingle();
 
 
-	//注入DLL
-	if (InjectDll()==FALSE)
+
+	if (InjectDll(wxPid)==FALSE)
 	{
 		ExitProcess(-1);
 	}
@@ -124,6 +124,13 @@ void CWeChatRobotDlg::OnSysCommand(UINT nID, LPARAM lParam)
 	{
 		CAboutDlg dlgAbout;
 		dlgAbout.DoModal();
+	}
+	else if ((nID & 0xFFF0) == SC_CLOSE)//对话框关闭 消息
+	{
+		//AfxMessageBox(L"closed");
+		//CloseHandle(wxPid);
+		TerminateProcess(wxPid, 0);
+		CDialogEx::OnSysCommand(nID, lParam);
 	}
 	else
 	{
