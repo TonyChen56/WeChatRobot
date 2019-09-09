@@ -72,10 +72,22 @@ void GetInformation()
 	}
 
 	//Œ¢–≈Í«≥∆
+
+	BYTE nickLength = *(BYTE*)(dwWeChatWinAddr + 0x126D92C);
+
+	//Œ¢–≈Í«≥∆
 	char nickname[40] = { 0 };
-	sprintf_s(nickname, "%s", (char*)(dwWeChatWinAddr + 0x126D91C));
-	wcscpy_s(info->nickname, wcslen(UTF8ToUnicode(nickname))+1, UTF8ToUnicode(nickname));
-	
+	if (nickLength < 16)
+	{
+		sprintf_s(nickname, "%s", (char*)(dwWeChatWinAddr + 0x126D91C));
+		wcscpy_s(info->nickname, wcslen(UTF8ToUnicode(nickname)) + 1, UTF8ToUnicode(nickname));
+	}
+	else
+	{
+		DWORD pNickName = dwWeChatWinAddr + 0x126D91C;
+		sprintf_s(nickname, "%s", (char*)(*(DWORD*)pNickName));
+		wcscpy_s(info->nickname, wcslen(UTF8ToUnicode(nickname)) + 1, UTF8ToUnicode(nickname));
+	}
 
 	//Œ¢–≈’À∫≈
 	char wxcount[40] = { 0 };
