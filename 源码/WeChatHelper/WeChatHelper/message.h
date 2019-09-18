@@ -24,3 +24,5 @@
 #define WM_AlreadyLogin 21
 #define WM_SendAtMsg 22
 #define WM_DelRoomMember 23
+#define WM_OpenUrl 24
+#define WM_SaveFriendList 25

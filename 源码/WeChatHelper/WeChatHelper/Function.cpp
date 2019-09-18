@@ -263,3 +263,45 @@ void AntiRevoke()
 	//恢复属性
 	VirtualProtect((LPVOID)dwPathcAddr, 5, dwOldAttr, &dwOldAttr);
 }
+
+//************************************************************
+// 函数名称: OpenUrl
+// 函数说明: 打开微信浏览器
+// 作    者: GuiShou
+// 时    间: 2019/9/10
+// 参    数: void
+// 返 回 值: void 
+//************************************************************
+void OpenUrl(wchar_t * Url)
+{
+	struct wechatText
+	{
+		wchar_t* pStr;
+		int strLen;
+		int iStrLen;
+
+	};
+
+
+	wechatText pUrl = { 0 };
+	pUrl.pStr = Url;
+	pUrl.strLen = wcslen(Url);
+	pUrl.iStrLen = wcslen(Url) * 2;
+	char* asmpUrl = (char*)&pUrl.pStr;
+	DWORD dwWeChatWinAddr = (DWORD)GetModuleHandle(L"WeChatWin.dll");
+	DWORD callAdd1 = dwWeChatWinAddr + 0x481900;
+	DWORD callAdd2 = dwWeChatWinAddr + 0x67C060;
+	__asm {
+		pushad
+		sub esp, 0x14
+		mov eax, asmpUrl
+		mov ecx, esp
+		push eax
+		call callAdd1
+		call callAdd2
+		add esp, 0x14
+		popad
+	}
+
+
+}

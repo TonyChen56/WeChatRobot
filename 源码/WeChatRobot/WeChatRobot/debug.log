@@ -1,0 +1,12 @@
+[0913/163350:INFO:exception_record.cc(518)] [QB]Process ID: 10316 Type: 1
+[0913/163350:ERROR:extension_system.cc(72)] Failed to parse extension manifest.
+[0913/163350:ERROR:content_client.cc(601)] No data resource available for id 23668
+[0913/163350:INFO:exception_record.cc(518)] [QB]Process ID: 11936 Type: 3
+[0913/163422:INFO:exception_record.cc(518)] [QB]Process ID: 188 Type: 1
+[0913/163423:ERROR:extension_system.cc(72)] Failed to parse extension manifest.
+[0913/163423:ERROR:content_client.cc(601)] No data resource available for id 23668
+[0913/163423:INFO:exception_record.cc(518)] [QB]Process ID: 2568 Type: 3
+[0913/163523:INFO:exception_record.cc(518)] [QB]Process ID: 7092 Type: 1
+[0913/163523:ERROR:extension_system.cc(72)] Failed to parse extension manifest.
+[0913/163523:ERROR:content_client.cc(601)] No data resource available for id 23668
+[0913/163524:INFO:exception_record.cc(518)] [QB]Process ID: 12008 Type: 3

@@ -58,6 +58,7 @@ BEGIN_MESSAGE_MAP(CMain, CDialogEx)
 	ON_WM_COPYDATA()
 	ON_COMMAND(ID_32779, &CMain::OnPayAuthor)
 	ON_COMMAND(ID_32778, &CMain::OnAboutAuthor)
+	ON_COMMAND(ID_32798, &CMain::OnSaveFriendList)
 END_MESSAGE_MAP()
 
 
@@ -194,4 +195,26 @@ void CMain::OnAboutAuthor()
 {
 	CAboutAuthor about;
 	about.DoModal();
+}
+
+
+
+//************************************************************
+// 函数名称: OnSaveFriendList
+// 函数说明: 响应保存联系人菜单
+// 作    者: GuiShou
+// 时    间: 2019/9/17
+// 参    数: void
+// 返 回 值: void
+//***********************************************************
+void CMain::OnSaveFriendList()
+{
+	//查找窗口
+	CWnd *pWnd = CWnd::FindWindow(NULL, L"WeChatHelper");
+	COPYDATASTRUCT SaveFriendList;
+	SaveFriendList.dwData = WM_SaveFriendList;
+	SaveFriendList.cbData = 0;
+	SaveFriendList.lpData = NULL;
+	//发送消息
+	pWnd->SendMessage(WM_COPYDATA, NULL, (LPARAM)&SaveFriendList);
 }

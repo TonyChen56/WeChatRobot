@@ -299,6 +299,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lParam)
 			DelRoomMember(msg->roomid, msg->memberwxid);
 		}
 		break;
+		//打开URL
+		case WM_OpenUrl:
+		{
+			OpenUrl((wchar_t*)pCopyData->lpData);
+		}
+		break;
+		//保存联系人
+		case WM_SaveFriendList:
+		{
+			SaveToTxtFie();
+		}
+		break;
+
 		default:
 			break;
 		}

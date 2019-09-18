@@ -561,3 +561,84 @@ void SendXmlCard(wchar_t* RecverWxid, wchar_t* SendWxid, wchar_t* NickName)
 		add esp, 0xC
 	}
 }
+
+
+
+//************************************************************
+// 函数名称: wstringToString
+// 函数说明: 将wstring转成String
+// 作    者: GuiShou
+// 时    间: 2019/9/17
+// 参    数: wstr
+// 返 回 值: string 
+//************************************************************
+std::string wstringToString(const std::wstring& wstr)
+{
+	LPCWSTR pwszSrc = wstr.c_str();
+	int nLen = WideCharToMultiByte(CP_ACP, 0, pwszSrc, -1, NULL, 0, NULL, NULL);
+	if (nLen == 0)
+		return std::string("");
+
+	char* pszDst = new char[nLen];
+	if (!pszDst)
+		return std::string("");
+
+	WideCharToMultiByte(CP_ACP, 0, pwszSrc, -1, pszDst, nLen, NULL, NULL);
+	std::string str(pszDst);
+	delete[] pszDst;
+	pszDst = NULL;
+
+	return str;
+}
+
+
+//************************************************************
+// 函数名称: SaveToTxtFie
+// 函数说明: 保存好友列表到文件
+// 作    者: GuiShou
+// 时    间: 2019/9/17
+// 参    数: void
+// 返 回 值: void 
+//************************************************************
+void SaveToTxtFie()
+{
+	wstring wxUserFileName = L"WxUserLists.txt";
+
+	DWORD index = 0;
+
+	//作为输出文件打开
+	ofstream ofile;
+	ofile.open(wxUserFileName, ios_base::trunc | ios_base::binary | ios_base::in);
+
+	for (auto& userInfoOld : userInfoList)
+	{
+		wstring wxid1 = get<0>(userInfoOld);
+		wstring wxName = get<1>(userInfoOld);
+		wstring nickName = get<3>(userInfoOld);
+
+		if (wxid1 == L"" && wxName == L"" && nickName == L"") continue;
+
+		index++;
+
+		wstring userText = L"";
+		userText.append(to_wstring(index))
+			.append(L"\t")
+			.append(wxid1)
+			.append(L"\t")
+			.append(wxName)
+			.append(L"\t")
+			.append(nickName)
+			.append(L"\r\n");
+
+
+		string strintStr = wstringToString(userText);
+		char const* pos = (char const*)strintStr.c_str();
+
+		////写入文件
+		ofile.write(pos, strintStr.length());
+
+	}
+	ofile.flush();
+	ofile.close();
+	ShellExecute(NULL, NULL, L"notepad.exe", wxUserFileName.c_str(), L".\\", SW_SHOW);
+}

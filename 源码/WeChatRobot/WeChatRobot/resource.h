@@ -29,6 +29,7 @@
 #define IDD_ADD_USER                    169
 #define IDD_SET_ROOM_NAME               171
 #define IDD_SENDAT                      173
+#define IDD_OpenUrl                     175
 #define IDC_INJECT_DLL                  1000
 #define IDC_UNLOAD_DLL                  1001
 #define IDC_SHOW_QRPIC                  1003
@@ -69,7 +70,9 @@
 #define IDC_AUTO_CHAT                   1034
 #define IDC_GET_EXPRESSION              1035
 #define IDC_SetRoomName                 1036
+#define IDC_OPEN_URL                    1036
 #define IDC_SendAt                      1037
+#define IDC_OPEN                        1038
 #define ID_32775                        32775
 #define ID_32776                        32776
 #define ID_32777                        32777
@@ -93,14 +96,15 @@
 #define ID_32795                        32795
 #define ID_32796                        32796
 #define ID_32797                        32797
+#define ID_32798                        32798
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        175
-#define _APS_NEXT_COMMAND_VALUE         32798
-#define _APS_NEXT_CONTROL_VALUE         1038
+#define _APS_NEXT_RESOURCE_VALUE        177
+#define _APS_NEXT_COMMAND_VALUE         32799
+#define _APS_NEXT_CONTROL_VALUE         1039
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

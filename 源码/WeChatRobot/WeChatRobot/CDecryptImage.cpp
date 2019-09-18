@@ -72,6 +72,8 @@ void CDecryptImage::OnBnClickedDecryptimage()
 		MessageBox(L"图片不存在 请重试");
 		return;
 	}
+	UpdateData(TRUE);
+
 	//检测密钥是否存在
 	if (m_key=="")
 	{
@@ -99,7 +101,7 @@ void CDecryptImage::OnBnClickedDecryptimage()
 		MessageBoxA(NULL, "读取文件失败", "错误", 0);
 		return;
 	}
-	UpdateData(TRUE);
+
 	unsigned int hexkey = 0;
 	USES_CONVERSION;
 	sscanf_s(W2A(m_key), "%x", &hexkey);

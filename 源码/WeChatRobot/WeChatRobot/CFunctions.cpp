@@ -10,6 +10,7 @@
 #include "CMultiOpen.h"
 #include "CAddUser.h"
 #include "CFriendList.h"
+#include "COpenUrl.h"
 
 extern BOOL isAttentTuLing;
 BOOL bAutoChat = FALSE;
@@ -41,6 +42,7 @@ BEGIN_MESSAGE_MAP(CFunctions, CDialogEx)
 	ON_BN_CLICKED(IDC_ADD_USER, &CFunctions::OnBnClickedAddUser)
 	ON_BN_CLICKED(IDC_AUTO_CHAT, &CFunctions::OnBnClickedAutoChat)
 	ON_BN_CLICKED(IDC_GET_EXPRESSION, &CFunctions::OnBnClickedGetExpression)
+	ON_BN_CLICKED(IDC_OPEN_URL, &CFunctions::OnBnClickedOpenUrl)
 END_MESSAGE_MAP()
 
 
@@ -149,9 +151,6 @@ void CFunctions::OnBnClickedAutoChat()
 	{
 		MessageBoxW(L"请先关注图灵机器人公众号", L"错误", 0);
 	}
-
-	
-	
 }
 
 
@@ -170,4 +169,20 @@ void CFunctions::OnBnClickedGetExpression()
 	char expresspath[MAX_PATH] = { 0 };
 	sprintf_s(expresspath,"%s%s", temppath, "WeChatExpressions");
 	MessageBoxA(NULL, expresspath, "微信表情目录", 0);
+}
+
+
+
+//************************************************************
+// 函数名称: OnBnClickedOpenUrl
+// 函数说明: 打开微信浏览器
+// 作    者: GuiShou
+// 时    间: 2019/9/10
+// 参    数: void
+// 返 回 值: void
+//***********************************************************
+void CFunctions::OnBnClickedOpenUrl()
+{
+	COpenUrl openurl;
+	openurl.DoModal();
 }

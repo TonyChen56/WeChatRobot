@@ -28,4 +28,5 @@ public:
 	afx_msg void OnPayAuthor();
 	afx_msg void OnAboutAuthor();
 	afx_msg void OnClose();
+	afx_msg void OnSaveFriendList();
 };

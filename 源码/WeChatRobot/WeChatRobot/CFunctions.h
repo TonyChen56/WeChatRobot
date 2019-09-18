@@ -28,4 +28,5 @@ public:
 	afx_msg void OnBnClickedAddUser();
 	afx_msg void OnBnClickedAutoChat();
 	afx_msg void OnBnClickedGetExpression();
+	afx_msg void OnBnClickedOpenUrl();
 };

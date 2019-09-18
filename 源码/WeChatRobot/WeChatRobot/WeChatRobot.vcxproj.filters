@@ -91,6 +91,9 @@
     <Filter Include="好友列表\查看群成员\查看群成员">
       <UniqueIdentifier>{f3300f15-5b33-45cd-9fda-d0ed9bd2efdd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="功能大全\打开微信浏览器">
+      <UniqueIdentifier>{29b883c2-a143-4bbf-b2db-db10231b897e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WeChatRobot.h">
@@ -171,6 +174,9 @@
     <ClInclude Include="CChatRoomMember.h">
       <Filter>好友列表\查看群成员\查看群成员</Filter>
     </ClInclude>
+    <ClInclude Include="COpenUrl.h">
+      <Filter>功能大全\打开微信浏览器</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WeChatRobot.cpp">
@@ -241,6 +247,9 @@
     </ClCompile>
     <ClCompile Include="CChatRoomMember.cpp">
       <Filter>好友列表\查看群成员\查看群成员</Filter>
+    </ClCompile>
+    <ClCompile Include="COpenUrl.cpp">
+      <Filter>功能大全\打开微信浏览器</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

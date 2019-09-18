@@ -5,7 +5,6 @@
 #include "WeChatRobot.h"
 #include "CChatRecords.h"
 #include "afxdialogex.h"
-
 #include "stdafx.h"
 #include "WeChatRobot.h"
 #include "CChatRecords.h"
@@ -21,8 +20,9 @@
 #include <windows.h>
 #include "Wininet.h"
 #pragma comment(lib,"Wininet.lib")
-
 #include <fstream>
+#include <mmsystem.h>   //多媒体播放所需的头文件
+#pragma comment(lib,"winmm.lib")  //多媒体播放所需的库文件
 
 DWORD g_index=0;
 
@@ -77,7 +77,6 @@ wchar_t * StringToWchar_t(const std::string & str)
 	wchar_t * m_chatroommmsg = new wchar_t[str.size() * 2];  //
 	memset(m_chatroommmsg, 0, str.size() * 2);
 	setlocale(LC_ALL, "zh_CN.UTF-8");
-	//setlocale(LC_CTYPE, "chs");
 	swprintf(m_chatroommmsg, str.size() * 2, L"%S", str.c_str());
 
 	return m_chatroommmsg;
@@ -130,6 +129,7 @@ struct Message
 	wchar_t wxid[40];		//微信ID/群ID
 	wchar_t msgSender[40];	//消息发送者
 	wchar_t content[200];	//消息内容
+	BOOL isMoney = FALSE;	//是否是收款消息
 };
 
 
@@ -205,6 +205,21 @@ afx_msg LRESULT CChatRecords::OnShowmessage(WPARAM wParam, LPARAM lParam)
 	m_ChatRecord.SetItemText(g_index, 2, msg->wxid);
 	m_ChatRecord.SetItemText(g_index, 3, msg->msgSender);
 	m_ChatRecord.SetItemText(g_index, 4, msg->content);
+
+	if (msg->isMoney==TRUE)
+	{
+		//如果是收款消息 播放音效
+		if (GetFileAttributesA("微信收款音效.mp3")==INVALID_FILE_ATTRIBUTES)
+		{
+			MessageBoxA(NULL, "未找到微信收款音效文件 无法播放语音提示", "Tip", 0);
+		}
+		else
+		{
+			mciSendString(L"open 微信收款音效.mp3", 0, 0, 0);
+			mciSendString(L"play 微信收款音效.mp3", 0, 0, 0);
+		}
+		
+	}
 
 	std::string type = Wchar_tToString(msg->type);
 	std::string wxid = Wchar_tToString(msg->wxid);

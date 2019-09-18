@@ -4,6 +4,7 @@
 #include "ChatRecord.h"
 #include "FriendList.h"
 #include "CAutoFunction.h"
+#include <stdio.h>
 #pragma comment(lib,"Shlwapi.lib")
 using namespace std;
 
@@ -34,6 +35,7 @@ struct Message
 	wchar_t wxid[40];		//微信ID/群ID
 	wchar_t msgSender[40];	//消息发送者
 	wchar_t content[200];	//消息内容
+	BOOL isMoney = FALSE;	//是否是收款消息
 };
 
 
@@ -169,6 +171,7 @@ void SendWxMessage()
 		//文件
 		//转账
 		//链接
+		//收款
 		memcpy(msg->type, L"共享实时位置、文件、转账、链接", sizeof(L"共享实时位置、文件、转账、链接"));
 		isOther = TRUE;
 		break;
@@ -228,7 +231,6 @@ void SendWxMessage()
 	LPVOID pWxid = *((LPVOID *)(**msgAddress + 0x40));
 	swprintf_s(msg->wxid, L"%s", (wchar_t*)pWxid);
 
-	
 	//如果是群消息
 	if (isFriendMsg == FALSE)
 	{
@@ -276,6 +278,12 @@ void SendWxMessage()
 				SendTextMessage(tempwxid, tempcontent);
 				isSendTuLing = FALSE;
 			}
+		}
+		//如果微信ID为gh_3dfda90e39d6 说明是收款消息
+		else if ((StrCmpW(msg->wxid, L"gh_3dfda90e39d6") == 0))
+		{
+			swprintf_s(msg->content, L"%s", L"微信收款到账");
+			msg->isMoney = TRUE;
 		}
 		else
 		{
@@ -348,7 +356,20 @@ void SendWxMessage()
 	}
 	else if (isSystemMessage == TRUE)
 	{
-		swprintf_s(msg->content, L"%s", L"收到红包或系统消息,请在手机上查看");
+		wchar_t tempbuff[0x1000];
+		LPVOID pContent = *((LPVOID *)(**msgAddress + 0x68));
+		swprintf_s(tempbuff, L"%s", (wchar_t*)pContent);
+
+		//在这里处理加入群聊消息
+		if ((StrStrW(tempbuff, L"移出了群聊")||StrStrW(tempbuff, L"加入了群聊")))
+		{
+			wcscpy_s(msg->content, wcslen(tempbuff) + 1, tempbuff);
+		}
+		else
+		{
+			swprintf_s(msg->content, L"%s", L"收到红包或系统消息,请在手机上查看");
+		}
+	
 	}
 	//过滤完所有消息之后
 	else
