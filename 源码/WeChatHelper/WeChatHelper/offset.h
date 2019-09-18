@@ -79,3 +79,7 @@
 #define WxDelRoomMemberCall1 0x481900	  //删除群成员
 #define WxDelRoomMemberCall2 0x50010	  //删除群成员
 #define WxDelRoomMemberCall3 0x2652F0	  //删除群成员
+
+
+#define WxOpenUrl1 0x481900				 //打开浏览器
+#define WxOpenUrl2 0x67C060				 //打开浏览器

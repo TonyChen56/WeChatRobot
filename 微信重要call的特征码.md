@@ -549,5 +549,49 @@ E8 ???????? E8 ???????? 8BC8 E8 ???????? 8B4D F4
  83EC 14 8D83 54040000 8BCC 89A5 58FEFFFF 50 E8 ???????? 57 C645 FC 08 E8 ???????? 8BC8 C645 FC 05 E8 ????????
 ```
 
+### 发送群邀请
+
+```assembly
+6C152ED9   /74 30           je short WeChatWi.6C152F0B
+6C152EDB   |83EC 14         sub esp,0x14
+6C152EDE   |8D8F 6C050000   lea ecx,dword ptr ds:[edi+0x56C]
+6C152EE4   |8BC4            mov eax,esp
+6C152EE6   |89A5 38F4FFFF   mov dword ptr ss:[ebp-0xBC8],esp
+6C152EEC   |50              push eax
+6C152EED   |E8 9E430100     call WeChatWi.6C167290
+6C152EF2   |C645 FC 0A      mov byte ptr ss:[ebp-0x4],0xA
+6C152EF6   |E8 15D1FFFF     call WeChatWi.6C150010
+6C152EFB   |8D87 5C090000   lea eax,dword ptr ds:[edi+0x95C]
+6C152F01   |C645 FC 09      mov byte ptr ss:[ebp-0x4],0x9
+6C152F05   |50              push eax
+6C152F06   |E8 25202100     call WeChatWi.6C364F30                   ; 群邀请的call
+```
+
+```assembly
+74 30 83EC 14 8D8F ???????? 8BC4 89A5 38F4FFFF 50 E8 ???????? C645 FC 0A E8 ???????? 8D87 ???????? C645 FC 09 50 E8 ????????
+```
+
+### 打开浏览器
+
+```assembly
+6C7AB171    83EC 1C         sub esp,0x1C
+6C7AB174    8BCC            mov ecx,esp
+6C7AB176    50              push eaxs
+6C7AB177    E8 8467DDFF     call WeChatWi.6C581900
+6C7AB17C    8B55 1C         mov edx,dword ptr ss:[ebp+0x1C]
+6C7AB17F    8A4D F3         mov cl,byte ptr ss:[ebp-0xD]
+6C7AB182    E8 D90EFDFF     call WeChatWi.6C77C060
+6C7AB187    83C4 28         add esp,0x28
+6C7AB18A    EB 19           jmp short WeChatWi.6C7AB1A5
+```
+
+```assembly
+83EC 1C 8BCC 50 E8 ???????? 8B55 1C 8A4D F3 E8 ???????? 83C4 28 EB ??
+```
+
+
+
+
+
 
 

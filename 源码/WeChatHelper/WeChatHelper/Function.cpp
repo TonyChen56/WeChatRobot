@@ -289,8 +289,8 @@ void OpenUrl(wchar_t * Url)
 	pUrl.iStrLen = wcslen(Url) * 2;
 	char* asmpUrl = (char*)&pUrl.pStr;
 	DWORD dwWeChatWinAddr = (DWORD)GetModuleHandle(L"WeChatWin.dll");
-	DWORD callAdd1 = dwWeChatWinAddr + 0x481900;
-	DWORD callAdd2 = dwWeChatWinAddr + 0x67C060;
+	DWORD callAdd1 = dwWeChatWinAddr + WxOpenUrl1;
+	DWORD callAdd2 = dwWeChatWinAddr + WxOpenUrl2;
 	__asm {
 		pushad
 		sub esp, 0x14
