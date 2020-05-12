@@ -2,11 +2,11 @@
 
 ## 注意
 
+**精力有限 项目变更为收费维护 有相关需求请进群私聊群主**
+
 点击链接加入群聊【鬼手PC逆向交流2群】：https://jq.qq.com/?_wv=1027&k=5LnbOvc
 
 ![qrcode_1567060028234](assets/qrcode_1567060028234.jpg)
-
-最后欢迎加入我的QQ交流群 提交BUG 闲聊扯淡 技术交流 来者不拒
 
 如果觉得本项目对你有帮助 可以打赏一下作者 毕竟开源不易
 
@@ -134,13 +134,9 @@
 
 ## 技术细节
 
-PCXX逆向：使用CE+OD查找个人数据：https://blog.csdn.net/qq_38474570/article/details/92571302
-
 PCXX逆向：使用HOOK拦截二维码：https://blog.csdn.net/qq_38474570/article/details/92798577
 
 PCXX逆向：发送与接收消息的分析与代码实现：https://blog.csdn.net/qq_38474570/article/details/93339861
-
-PCXX逆向：使用HOOK获取好友列表和群列表：https://blog.csdn.net/qq_38474570/article/details/95889507
 
 PC微信逆向：两种姿势教你解密数据库文件：https://blog.csdn.net/qq_38474570/article/details/96606530
 
