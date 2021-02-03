@@ -4,7 +4,7 @@
 
 **精力有限 项目变更为收费维护 有相关需求请进群私聊群主**
 
-点击链接加入群聊【鬼手PC逆向交流2群】：https://jq.qq.com/?_wv=1027&k=5LnbOvc
+点击链接加入群聊【鬼手PC逆向3群】：https://jq.qq.com/?_wv=1027&k=wXH7AilL
 
 ![qrcode_1567060028234](assets/qrcode_1567060028234.jpg)
 
