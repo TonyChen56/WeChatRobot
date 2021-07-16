@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="初始化微信">
+      <UniqueIdentifier>{0b9b27f1-635b-4b63-9580-930b8d72841d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="窗口消息循环">
+      <UniqueIdentifier>{4b5b4735-0ae3-4e6b-8cdb-2af5f879882b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="登陆窗口">
+      <UniqueIdentifier>{fc4286b8-5328-472a-a362-c3b84ee68237}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="主窗口">
+      <UniqueIdentifier>{4b22a285-3804-41a4-a099-5f661e054c87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="好友列表">
+      <UniqueIdentifier>{eefc2ad3-9bc5-47a6-aa77-b4e015e0ea95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="聊天记录">
+      <UniqueIdentifier>{db5c4a94-9e79-4224-afae-c1f02e131232}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="功能窗口">
+      <UniqueIdentifier>{6b03db46-3e31-4358-88dc-52c5eccc57c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="好友列表\群相关操作">
+      <UniqueIdentifier>{cb6e8977-d569-4964-b82f-3493e8e177de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="好友列表\好友列表">
+      <UniqueIdentifier>{6267f3a4-1be9-4758-b7a7-014ced3b6ad0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="自动功能">
+      <UniqueIdentifier>{9791c407-f3b4-44c9-843a-f9b5d6fdab8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="自定义数据">
+      <UniqueIdentifier>{d493d5fb-ef85-41d0-9d36-6bf3bdce98c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="自定义数据\偏移">
+      <UniqueIdentifier>{680edb83-20e0-4c82-86cb-c20dc4961136}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="自定义数据\自定义消息">
+      <UniqueIdentifier>{e391b322-e0a0-4eb2-88b8-0eaa4a819d2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="自定义数据\结构体">
+      <UniqueIdentifier>{05fd2c1f-b15c-4077-b8d7-3d72ac79a0e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="公共类">
+      <UniqueIdentifier>{88bc72d9-339d-44e6-927b-1743ff5c1beb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="功能窗口\个人信息">
+      <UniqueIdentifier>{53948c82-56cf-4eca-acab-1b2031c1c890}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="功能窗口\功能窗口">
+      <UniqueIdentifier>{60dea528-288d-4c73-9274-bc0b03f2f4f9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="InitWeChat.h">
+      <Filter>初始化微信</Filter>
+    </ClInclude>
+    <ClInclude Include="message.h">
+      <Filter>自定义数据\自定义消息</Filter>
+    </ClInclude>
+    <ClInclude Include="offset.h">
+      <Filter>自定义数据\偏移</Filter>
+    </ClInclude>
+    <ClInclude Include="WndMsgLoop.h">
+      <Filter>窗口消息循环</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Login.h">
+      <Filter>登陆窗口</Filter>
+    </ClInclude>
+    <ClInclude Include="MainWindow.h">
+      <Filter>主窗口</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatRecord.h">
+      <Filter>聊天记录</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatRoomOperate.h">
+      <Filter>好友列表\群相关操作</Filter>
+    </ClInclude>
+    <ClInclude Include="FriendList.h">
+      <Filter>好友列表\好友列表</Filter>
+    </ClInclude>
+    <ClInclude Include="CAutoFunction.h">
+      <Filter>自动功能</Filter>
+    </ClInclude>
+    <ClInclude Include="data.h">
+      <Filter>自定义数据\结构体</Filter>
+    </ClInclude>
+    <ClInclude Include="CPublic.h">
+      <Filter>公共类</Filter>
+    </ClInclude>
+    <ClInclude Include="SelfInformation.h">
+      <Filter>功能窗口\个人信息</Filter>
+    </ClInclude>
+    <ClInclude Include="Function.h">
+      <Filter>功能窗口\功能窗口</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="WeChatHelper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="InitWeChat.cpp">
+      <Filter>初始化微信</Filter>
+    </ClCompile>
+    <ClCompile Include="WndMsgLoop.cpp">
+      <Filter>窗口消息循环</Filter>
+    </ClCompile>
+    <ClCompile Include="Login.cpp">
+      <Filter>登陆窗口</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>主窗口</Filter>
+    </ClCompile>
+    <ClCompile Include="ChatRecord.cpp">
+      <Filter>聊天记录</Filter>
+    </ClCompile>
+    <ClCompile Include="FriendList.cpp">
+      <Filter>好友列表\好友列表</Filter>
+    </ClCompile>
+    <ClCompile Include="ChatRoomOperate.cpp">
+      <Filter>好友列表\群相关操作</Filter>
+    </ClCompile>
+    <ClCompile Include="CAutoFunction.cpp">
+      <Filter>自动功能</Filter>
+    </ClCompile>
+    <ClCompile Include="CPublic.cpp">
+      <Filter>公共类</Filter>
+    </ClCompile>
+    <ClCompile Include="SelfInformation.cpp">
+      <Filter>功能窗口\个人信息</Filter>
+    </ClCompile>
+    <ClCompile Include="Function.cpp">
+      <Filter>功能窗口\功能窗口</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
