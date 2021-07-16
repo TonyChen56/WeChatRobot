@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="注入器">
+      <UniqueIdentifier>{193408ff-e557-4e8f-a7f7-14adeb59a41c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="登陆窗口">
+      <UniqueIdentifier>{2a2cdfc5-e48a-46dc-a9d6-1c6a1c1da7a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="主窗口">
+      <UniqueIdentifier>{e972c32d-5869-46fe-b699-7294185d45db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="好友列表">
+      <UniqueIdentifier>{4b8d265e-eb85-4bc0-b70b-94f16ada0131}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="聊天记录">
+      <UniqueIdentifier>{1434472e-7d72-4ace-9c79-2de3a3719841}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="功能大全">
+      <UniqueIdentifier>{cf13cba3-0048-4828-9832-53b1fa18d624}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="选项卡">
+      <UniqueIdentifier>{87653f1f-3e27-49a5-9f2c-91b13f46eb81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="好友列表\发送消息">
+      <UniqueIdentifier>{ce3d11ea-50a8-4102-8fcc-c78b434c93e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="功能大全\个人信息">
+      <UniqueIdentifier>{1893610a-444d-43b3-9d38-ac949a886f2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="好友列表\好友列表">
+      <UniqueIdentifier>{57cae96b-b9d4-43d4-9876-e35d0bb96af6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="好友列表\群公告">
+      <UniqueIdentifier>{fff76411-4c4e-45e2-9f78-4f1415ed1b51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="功能大全\功能窗口">
+      <UniqueIdentifier>{1c2d0d7d-9764-4d79-b880-cb4516cb9b2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="功能大全\解密图片">
+      <UniqueIdentifier>{8e6a5c4b-f36e-4bfc-8bd8-dda5fa0613ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="好友列表\添加群成员">
+      <UniqueIdentifier>{8a5c963d-2c38-41e6-9a59-03463cb86c13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="好友列表\发送名片">
+      <UniqueIdentifier>{d73b7219-e423-4e13-b7d9-891557925620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="好友列表\查看群成员">
+      <UniqueIdentifier>{04f0e374-4481-4bc2-8bb2-1953a1f1081f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="功能大全\无限多开">
+      <UniqueIdentifier>{744c6196-1c9e-4599-84a0-174a0cad9551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="菜单栏">
+      <UniqueIdentifier>{6e5d0c2d-2b48-4085-973d-e23069646a4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="菜单栏\打赏作者">
+      <UniqueIdentifier>{77a5f69c-2e7d-48be-aeb9-17376dc0dafd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="菜单栏\关于作者">
+      <UniqueIdentifier>{e4db8bb4-32bd-4353-8af5-dacb3efea7cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="功能大全\添加好友">
+      <UniqueIdentifier>{e631ad46-5b2a-4b1b-a64a-89521bc01283}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="好友列表\修改群名称">
+      <UniqueIdentifier>{c056225b-cdec-4635-b153-e64128b4878b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="好友列表\查看群成员\发送艾特消息">
+      <UniqueIdentifier>{e6129c08-a16f-4b2b-a5d6-6956224e905c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="好友列表\查看群成员\查看群成员">
+      <UniqueIdentifier>{f3300f15-5b33-45cd-9fda-d0ed9bd2efdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="功能大全\打开微信浏览器">
+      <UniqueIdentifier>{29b883c2-a143-4bbf-b2db-db10231b897e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="好友列表\邀请群成员">
+      <UniqueIdentifier>{e6d57d6c-f891-4a43-a781-d47f3df64449}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="功能大全\发送xml文章">
+      <UniqueIdentifier>{539d852d-cee7-47be-9de2-a7b7af203d5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="好友列表\好友信息">
+      <UniqueIdentifier>{cda48e5c-30ae-4717-97cb-9a83ba6ccf5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="好友列表\修改备注">
+      <UniqueIdentifier>{d49002ed-e818-43d2-84a5-43ea14b4e447}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="功能大全\创建群聊">
+      <UniqueIdentifier>{86d25358-824c-41fe-8532-395e15cd5e8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="功能大全\修改版本号">
+      <UniqueIdentifier>{5e1adde2-8b7d-44e6-9338-a9b96af7784e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="自定义数据">
+      <UniqueIdentifier>{30fd4e88-1105-4b17-bcd8-44367b7c946c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="自定义数据\自定义消息">
+      <UniqueIdentifier>{4c32c906-f9de-4503-be4f-b64ad0614daf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="自定义数据\结构体">
+      <UniqueIdentifier>{ab603aa1-5935-4fc4-af16-5720f654f8c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="功能大全\关注公众号">
+      <UniqueIdentifier>{2645c386-2125-40da-9e8f-65c425dbc699}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="WeChatRobot.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="WeChatRobotDlg.h">
+      <Filter>登陆窗口</Filter>
+    </ClInclude>
+    <ClInclude Include="CInjectTools.h">
+      <Filter>注入器</Filter>
+    </ClInclude>
+    <ClInclude Include="message.h">
+      <Filter>自定义数据\自定义消息</Filter>
+    </ClInclude>
+    <ClInclude Include="CChatRecords.h">
+      <Filter>聊天记录</Filter>
+    </ClInclude>
+    <ClInclude Include="CMain.h">
+      <Filter>主窗口</Filter>
+    </ClInclude>
+    <ClInclude Include="CMyTableCtrl.h">
+      <Filter>选项卡</Filter>
+    </ClInclude>
+    <ClInclude Include="CSendMsg.h">
+      <Filter>好友列表\发送消息</Filter>
+    </ClInclude>
+    <ClInclude Include="CInformation.h">
+      <Filter>功能大全\个人信息</Filter>
+    </ClInclude>
+    <ClInclude Include="CFriendList.h">
+      <Filter>好友列表\好友列表</Filter>
+    </ClInclude>
+    <ClInclude Include="CRoomAnnouncement.h">
+      <Filter>好友列表\群公告</Filter>
+    </ClInclude>
+    <ClInclude Include="CFunctions.h">
+      <Filter>功能大全\功能窗口</Filter>
+    </ClInclude>
+    <ClInclude Include="CDecryptImage.h">
+      <Filter>功能大全\解密图片</Filter>
+    </ClInclude>
+    <ClInclude Include="CAddChatRoomMember.h">
+      <Filter>好友列表\添加群成员</Filter>
+    </ClInclude>
+    <ClInclude Include="CSendXmlCard.h">
+      <Filter>好友列表\发送名片</Filter>
+    </ClInclude>
+    <ClInclude Include="CMultiOpen.h">
+      <Filter>功能大全\无限多开</Filter>
+    </ClInclude>
+    <ClInclude Include="CPay.h">
+      <Filter>菜单栏\打赏作者</Filter>
+    </ClInclude>
+    <ClInclude Include="CAboutAuthor.h">
+      <Filter>菜单栏\关于作者</Filter>
+    </ClInclude>
+    <ClInclude Include="CAddUser.h">
+      <Filter>功能大全\添加好友</Filter>
+    </ClInclude>
+    <ClInclude Include="CSetRoomName.h">
+      <Filter>好友列表\修改群名称</Filter>
+    </ClInclude>
+    <ClInclude Include="CSendChatRoomAt.h">
+      <Filter>好友列表\查看群成员\发送艾特消息</Filter>
+    </ClInclude>
+    <ClInclude Include="CChatRoomMember.h">
+      <Filter>好友列表\查看群成员\查看群成员</Filter>
+    </ClInclude>
+    <ClInclude Include="COpenUrl.h">
+      <Filter>功能大全\打开微信浏览器</Filter>
+    </ClInclude>
+    <ClInclude Include="CInviteGroupMember.h">
+      <Filter>好友列表\邀请群成员</Filter>
+    </ClInclude>
+    <ClInclude Include="CSendXmlAricle.h">
+      <Filter>功能大全\发送xml文章</Filter>
+    </ClInclude>
+    <ClInclude Include="CFriendInfo.h">
+      <Filter>好友列表\好友信息</Filter>
+    </ClInclude>
+    <ClInclude Include="CSetRemark.h">
+      <Filter>好友列表\修改备注</Filter>
+    </ClInclude>
+    <ClInclude Include="CCreateChatRoom.h">
+      <Filter>功能大全\创建群聊</Filter>
+    </ClInclude>
+    <ClInclude Include="CModifyVersion.h">
+      <Filter>功能大全\修改版本号</Filter>
+    </ClInclude>
+    <ClInclude Include="data.h">
+      <Filter>自定义数据\结构体</Filter>
+    </ClInclude>
+    <ClInclude Include="CFollowAccount.h">
+      <Filter>功能大全\关注公众号</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WeChatRobot.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="WeChatRobotDlg.cpp">
+      <Filter>登陆窗口</Filter>
+    </ClCompile>
+    <ClCompile Include="CInjectTools.cpp">
+      <Filter>注入器</Filter>
+    </ClCompile>
+    <ClCompile Include="CChatRecords.cpp">
+      <Filter>聊天记录</Filter>
+    </ClCompile>
+    <ClCompile Include="CMain.cpp">
+      <Filter>主窗口</Filter>
+    </ClCompile>
+    <ClCompile Include="CMyTableCtrl.cpp">
+      <Filter>选项卡</Filter>
+    </ClCompile>
+    <ClCompile Include="CSendMsg.cpp">
+      <Filter>好友列表\发送消息</Filter>
+    </ClCompile>
+    <ClCompile Include="CInformation.cpp">
+      <Filter>功能大全\个人信息</Filter>
+    </ClCompile>
+    <ClCompile Include="CFriendList.cpp">
+      <Filter>好友列表\好友列表</Filter>
+    </ClCompile>
+    <ClCompile Include="CRoomAnnouncement.cpp">
+      <Filter>好友列表\群公告</Filter>
+    </ClCompile>
+    <ClCompile Include="CFunctions.cpp">
+      <Filter>功能大全\功能窗口</Filter>
+    </ClCompile>
+    <ClCompile Include="CDecryptImage.cpp">
+      <Filter>功能大全\解密图片</Filter>
+    </ClCompile>
+    <ClCompile Include="CAddChatRoomMember.cpp">
+      <Filter>好友列表\添加群成员</Filter>
+    </ClCompile>
+    <ClCompile Include="CSendXmlCard.cpp">
+      <Filter>好友列表\发送名片</Filter>
+    </ClCompile>
+    <ClCompile Include="CMultiOpen.cpp">
+      <Filter>功能大全\无限多开</Filter>
+    </ClCompile>
+    <ClCompile Include="CPay.cpp">
+      <Filter>菜单栏\打赏作者</Filter>
+    </ClCompile>
+    <ClCompile Include="CAboutAuthor.cpp">
+      <Filter>菜单栏\关于作者</Filter>
+    </ClCompile>
+    <ClCompile Include="CAddUser.cpp">
+      <Filter>功能大全\添加好友</Filter>
+    </ClCompile>
+    <ClCompile Include="CSetRoomName.cpp">
+      <Filter>好友列表\修改群名称</Filter>
+    </ClCompile>
+    <ClCompile Include="CSendChatRoomAt.cpp">
+      <Filter>好友列表\查看群成员\发送艾特消息</Filter>
+    </ClCompile>
+    <ClCompile Include="CChatRoomMember.cpp">
+      <Filter>好友列表\查看群成员\查看群成员</Filter>
+    </ClCompile>
+    <ClCompile Include="COpenUrl.cpp">
+      <Filter>功能大全\打开微信浏览器</Filter>
+    </ClCompile>
+    <ClCompile Include="CInviteGroupMember.cpp">
+      <Filter>好友列表\邀请群成员</Filter>
+    </ClCompile>
+    <ClCompile Include="CSendXmlAricle.cpp">
+      <Filter>功能大全\发送xml文章</Filter>
+    </ClCompile>
+    <ClCompile Include="CFriendInfo.cpp">
+      <Filter>好友列表\好友信息</Filter>
+    </ClCompile>
+    <ClCompile Include="CSetRemark.cpp">
+      <Filter>好友列表\修改备注</Filter>
+    </ClCompile>
+    <ClCompile Include="CCreateChatRoom.cpp">
+      <Filter>功能大全\创建群聊</Filter>
+    </ClCompile>
+    <ClCompile Include="CModifyVersion.cpp">
+      <Filter>功能大全\修改版本号</Filter>
+    </ClCompile>
+    <ClCompile Include="CFollowAccount.cpp">
+      <Filter>功能大全\关注公众号</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WeChatRobot.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\WeChatRobot.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\WeChat.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\pay.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
