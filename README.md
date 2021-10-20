@@ -4,6 +4,8 @@
 
 **项目代码已升级至3.2.1.154 需要请自行下载**
 
+WeChatApi:https://www.showdoc.com.cn/guishou?page_id=4030105439283446
+
 点击链接加入群聊【鬼手PC逆向3群】：https://jq.qq.com/?_wv=1027&k=wXH7AilL
 
 ![qrcode_1567060028234](assets/qrcode_1567060028234.jpg)
