@@ -6,11 +6,11 @@
 
 WeChatApi:https://www.showdoc.com.cn/guishou?page_id=4030105439283446
 
-QQ Group：548601183
+QQ Group：537384511
 
 点击链接加入群聊【鬼手PC逆向3群】：https://jq.qq.com/?_wv=1027&k=wXH7AilL
 
-![qrcode_1567060028234](assets/4d4395f6ac666084b949f22d35b1f27.jpg)
+![Group4](assets/Group4.jpg)
 
 
 如果觉得本项目对你有帮助 可以打赏一下作者 毕竟开源不易
