@@ -4,7 +4,7 @@
 
 由于项目源码倒卖的人太多 后续不再付费提供更新版本 需要定制开发和API接口的请进群私聊我
 
-WeChatApi:https://www.showdoc.com.cn/guishou?page_id=4030105439283446
+WeChatApis.dll:https://www.showdoc.com.cn/guishou?page_id=4030105439283446
 
 
 QQ Group：537384511
