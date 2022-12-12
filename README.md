@@ -4,11 +4,11 @@
 
 当前适配的微信版本为3.2.1.154
 
-QQ Group：537384511
+QQ Group：715410952
 
-点击链接加入群聊【鬼手PC逆向交流4群】：https://jq.qq.com/?_wv=1027&k=vk4QWlT3
+点击链接加入群聊【鬼手PC逆向交流5群】：https://jq.qq.com/?_wv=1027&k=ZKEuSv76
 
-![Group4](assets/Group4.jpg)
+![Group4](assets/Group5.jpg)
 
 **说明：此群仅限学习和交流，无其他用处**
 
