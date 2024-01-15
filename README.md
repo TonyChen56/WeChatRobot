@@ -13,9 +13,9 @@
 
 企微文档 [文档地址](https://www.showdoc.com.cn/2394589234626830/10651037754589416) 
 
-QQ Group：397134844
+QQ Group：548601183
 
-点击链接加入群聊【鬼手逆向交流群】：https://qm.qq.com/q/sDg8nRkB6E
+点击链接加入群聊【鬼手逆向交流群】：https://qm.qq.com/q/sMlbUmeRdm
 
 ![Group5](assets/Group5.jpg)
 
