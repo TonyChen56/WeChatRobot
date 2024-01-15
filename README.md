@@ -17,7 +17,7 @@ QQ Group：548601183
 
 点击链接加入群聊【鬼手逆向交流群】：https://qm.qq.com/q/sMlbUmeRdm
 
-![Group5](assets/Group5.jpg)
+![微信图片_20240115203443](assets/微信图片_20240115203443.jpg)
 
 **说明：此群仅限学习和交流，无其他用处**
 
