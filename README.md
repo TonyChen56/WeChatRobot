@@ -7,9 +7,9 @@
 
 本项目为Demo版本，仅供学习参考。
 
-QQ Group：548601183
+QQ Group：795681068
 
-点击链接加入群聊【鬼手逆向交流群】：https://qm.qq.com/q/sMlbUmeRdm
+点击链接加入群聊【鬼手逆向交流群】：https://qm.qq.com/q/TXCiMFxgsO
 
 ![微信图片_20240115203443](assets/微信图片_20240115203443.jpg)
 
