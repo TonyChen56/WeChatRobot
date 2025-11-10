@@ -14,29 +14,29 @@ using namespace std;
 
 
 
-#define SERVER_ADDRESS "127.0.0.1" //·şÎñÆ÷¶ËIPµØÖ·      
-#define PORT           8080         //·şÎñÆ÷µÄ¶Ë¿ÚºÅ      
-#define MSGSIZE        1024         //ÊÕ·¢»º³åÇøµÄ´óĞ¡  
+#define SERVER_ADDRESS "127.0.0.1" //æœåŠ¡å™¨ç«¯IPåœ°å€      
+#define PORT           8080         //æœåŠ¡å™¨çš„ç«¯å£å·      
+#define MSGSIZE        1024         //æ”¶å‘ç¼“å†²åŒºçš„å¤§å°  
 
-BOOL g_AutoChat = FALSE;	//ÊÇ·ñ×Ô¶¯ÁÄÌì
-BOOL isSendTuLing = FALSE;	//ÊÇ·ñÒÑ¾­·¢¸øÁË»úÆ÷ÈË
-wchar_t tempwxid[50];	//´æ·ÅÎ¢ĞÅID
+BOOL g_AutoChat = FALSE;	//æ˜¯å¦è‡ªåŠ¨èŠå¤©
+BOOL isSendTuLing = FALSE;	//æ˜¯å¦å·²ç»å‘ç»™äº†æœºå™¨äºº
+wchar_t tempwxid[50];	//å­˜æ”¾å¾®ä¿¡ID
 
 
-//·µ»ØµØÖ·
+//è¿”å›åœ°å€
 DWORD RetkReciveMsgAddr = GetWeChatWinBase() + WxReciveMessage + 5;
 
-//±»¸²¸ÇµÄcallµÄµØÖ·
+//è¢«è¦†ç›–çš„callçš„åœ°å€
 DWORD OverReciveMsgCallAddr = GetWeChatWinBase() + WxReciveMessageCall;
 
 
 //************************************************************
-// º¯ÊıÃû³Æ: HookChatRecord
-// º¯ÊıËµÃ÷: HOOKÁÄÌì¼ÇÂ¼
-// ×÷    Õß: GuiShou
-// Ê±    ¼ä: 2019/7/6
-// ²Î    Êı: void
-// ·µ »Ø Öµ: void 
+// å‡½æ•°åç§°: HookChatRecord
+// å‡½æ•°è¯´æ˜: HOOKèŠå¤©è®°å½•
+// ä½œ    è€…: GuiShou
+// æ—¶    é—´: 2019/7/6
+// å‚    æ•°: void
+// è¿” å› å€¼: void 
 //************************************************************
 void HookChatRecord()
 {
@@ -46,25 +46,25 @@ void HookChatRecord()
 
 
 //************************************************************
-// º¯ÊıÃû³Æ: RecieveMesage
-// º¯ÊıËµÃ÷: ½ÓÊÕÏûÏ¢
-// ×÷    Õß: GuiShou
-// Ê±    ¼ä: 2019/7/6
-// ²Î    Êı: void
-// ·µ »Ø Öµ: void 
+// å‡½æ•°åç§°: RecieveMesage
+// å‡½æ•°è¯´æ˜: æ¥æ”¶æ¶ˆæ¯
+// ä½œ    è€…: GuiShou
+// æ—¶    é—´: 2019/7/6
+// å‚    æ•°: void
+// è¿” å› å€¼: void 
 //************************************************************
 __declspec(naked) void RecieveWxMesage()
 {
-	//±£´æÏÖ³¡
+	//ä¿å­˜ç°åœº
 	__asm
 	{
 		pushad;
 		push eax;
 		call SendWxMessage;
 		popad;
-		//µ÷ÓÃ±»¸²¸ÇµÄcall
+		//è°ƒç”¨è¢«è¦†ç›–çš„call
 		call OverReciveMsgCallAddr;
-		//Ìø×ªµ½·µ»ØµØÖ·
+		//è·³è½¬åˆ°è¿”å›åœ°å€
 		jmp RetkReciveMsgAddr;
 	}
 }
@@ -72,12 +72,12 @@ __declspec(naked) void RecieveWxMesage()
 
 
 //************************************************************
-// º¯ÊıÃû³Æ: ReceiveMsgProc
-// º¯ÊıËµÃ÷: ½ÓÊÕÏûÏ¢µÄÏß³Ì»Øµ÷º¯Êı
-// ×÷    Õß: GuiShou
-// Ê±    ¼ä: 2019/11/8
-// ²Î    Êı: Context ÉÏÏÂÎÄ
-// ·µ »Ø Öµ: void 
+// å‡½æ•°åç§°: ReceiveMsgProc
+// å‡½æ•°è¯´æ˜: æ¥æ”¶æ¶ˆæ¯çš„çº¿ç¨‹å›è°ƒå‡½æ•°
+// ä½œ    è€…: GuiShou
+// æ—¶    é—´: 2019/11/8
+// å‚    æ•°: Context ä¸Šä¸‹æ–‡
+// è¿” å› å€¼: void 
 //************************************************************
 void DealWithMsg(LPVOID Context)
 {
@@ -88,99 +88,99 @@ void DealWithMsg(LPVOID Context)
 		ChatMessageData* msg = (ChatMessageData*)Context;
 
 
-		BOOL isFriendMsg = FALSE;		//ÊÇ·ñÊÇºÃÓÑÏûÏ¢
-		BOOL isImageMessage = FALSE;	//ÊÇ·ñÊÇÍ¼Æ¬ÏûÏ¢
-		BOOL isRadioMessage = FALSE;	//ÊÇ·ñÊÇÊÓÆµÏûÏ¢
-		BOOL isVoiceMessage = FALSE;	//ÊÇ·ñÊÇÓïÒôÏûÏ¢
-		BOOL isBusinessCardMessage = FALSE;	//ÊÇ·ñÊÇÃûÆ¬ÏûÏ¢
-		BOOL isExpressionMessage = FALSE;	//ÊÇ·ñÊÇÃûÆ¬ÏûÏ¢
-		BOOL isLocationMessage = FALSE;	//ÊÇ·ñÊÇÎ»ÖÃÏûÏ¢
-		BOOL isSystemMessage = FALSE;	//ÊÇ·ñÊÇÏµÍ³»òºì°üÏûÏ¢
-		BOOL isPos_File_Money_XmlLink = FALSE;			//ÊÇ·ñÎ»ÖÃ ÎÄ¼ş ×ªÕËºÍÁ´½ÓÏûÏ¢
-		BOOL isFriendRequestMessage = FALSE;	//ÊÇ·ñÊÇºÃÓÑÇëÇóÏûÏ¢
-		BOOL isOther = FALSE;	//ÊÇ·ñÊÇÆäËûÏûÏ¢
+		BOOL isFriendMsg = FALSE;		//æ˜¯å¦æ˜¯å¥½å‹æ¶ˆæ¯
+		BOOL isImageMessage = FALSE;	//æ˜¯å¦æ˜¯å›¾ç‰‡æ¶ˆæ¯
+		BOOL isRadioMessage = FALSE;	//æ˜¯å¦æ˜¯è§†é¢‘æ¶ˆæ¯
+		BOOL isVoiceMessage = FALSE;	//æ˜¯å¦æ˜¯è¯­éŸ³æ¶ˆæ¯
+		BOOL isBusinessCardMessage = FALSE;	//æ˜¯å¦æ˜¯åç‰‡æ¶ˆæ¯
+		BOOL isExpressionMessage = FALSE;	//æ˜¯å¦æ˜¯åç‰‡æ¶ˆæ¯
+		BOOL isLocationMessage = FALSE;	//æ˜¯å¦æ˜¯ä½ç½®æ¶ˆæ¯
+		BOOL isSystemMessage = FALSE;	//æ˜¯å¦æ˜¯ç³»ç»Ÿæˆ–çº¢åŒ…æ¶ˆæ¯
+		BOOL isPos_File_Money_XmlLink = FALSE;			//æ˜¯å¦ä½ç½® æ–‡ä»¶ è½¬è´¦å’Œé“¾æ¥æ¶ˆæ¯
+		BOOL isFriendRequestMessage = FALSE;	//æ˜¯å¦æ˜¯å¥½å‹è¯·æ±‚æ¶ˆæ¯
+		BOOL isOther = FALSE;	//æ˜¯å¦æ˜¯å…¶ä»–æ¶ˆæ¯
 
 
 		switch (msg->dwtype)
 		{
 		case 0x01:
-			memcpy(msg->sztype, L"ÎÄ×Ö", sizeof(L"ÎÄ×Ö"));
+			wcscpy_s(msg->sztype, 0x20, L"æ–‡å­—");
 			break;
 		case 0x03:
-			memcpy(msg->sztype, L"Í¼Æ¬", sizeof(L"Í¼Æ¬"));
+			wcscpy_s(msg->sztype, 0x20, L"å›¾ç‰‡");
 			isImageMessage = TRUE;
 			break;
 		case 0x22:
-			memcpy(msg->sztype, L"ÓïÒô", sizeof(L"ÓïÒô"));
+			wcscpy_s(msg->sztype, 0x20, L"è¯­éŸ³");
 			isVoiceMessage = TRUE;
 			break;
 		case 0x25:
-			memcpy(msg->sztype, L"ºÃÓÑÈ·ÈÏ", sizeof(L"ºÃÓÑÈ·ÈÏ"));
+			wcscpy_s(msg->sztype, 0x20, L"å¥½å‹ç¡®è®¤");
 			isFriendRequestMessage = TRUE;
 			break;
 		case 0x28:
-			memcpy(msg->sztype, L"POSSIBLEFRIEND_MSG", sizeof(L"POSSIBLEFRIEND_MSG"));
+			wcscpy_s(msg->sztype, 0x20, L"POSSIBLEFRIEND_MSG");
 			isOther = TRUE;
 			break;
 		case 0x2A:
-			memcpy(msg->sztype, L"ÃûÆ¬", sizeof(L"ÃûÆ¬"));
+			wcscpy_s(msg->sztype, 0x20, L"åç‰‡");
 			isBusinessCardMessage = TRUE;
 			break;
 		case 0x2B:
-			memcpy(msg->sztype, L"ÊÓÆµ", sizeof(L"ÊÓÆµ"));
+			wcscpy_s(msg->sztype, 0x20, L"è§†é¢‘");
 			isRadioMessage = TRUE;
 			break;
 		case 0x2F:
-			//Ê¯Í·¼ôµ¶²¼
-			memcpy(msg->sztype, L"±íÇé", sizeof(L"±íÇé"));
+			//çŸ³å¤´å‰ªåˆ€å¸ƒ
+			wcscpy_s(msg->sztype, 0x20, L"è¡¨æƒ…");
 			isExpressionMessage = TRUE;
 			break;
 		case 0x30:
-			memcpy(msg->sztype, L"Î»ÖÃ", sizeof(L"Î»ÖÃ"));
+			wcscpy_s(msg->sztype, 0x20, L"ä½ç½®");
 			isLocationMessage = TRUE;
 			break;
 		case 0x31:
-			//¹²ÏíÊµÊ±Î»ÖÃ
-			//ÎÄ¼ş
-			//×ªÕË
-			//Á´½Ó
-			//ÊÕ¿î
-			memcpy(msg->sztype, L"¹²ÏíÊµÊ±Î»ÖÃ¡¢ÎÄ¼ş¡¢×ªÕË¡¢Á´½Ó", sizeof(L"¹²ÏíÊµÊ±Î»ÖÃ¡¢ÎÄ¼ş¡¢×ªÕË¡¢Á´½Ó"));
+			//å…±äº«å®æ—¶ä½ç½®
+			//æ–‡ä»¶
+			//è½¬è´¦
+			//é“¾æ¥
+			//æ”¶æ¬¾
+			wcscpy_s(msg->sztype, 0x20, L"å…±äº«å®æ—¶ä½ç½®ã€æ–‡ä»¶ã€è½¬è´¦ã€é“¾æ¥");
 			isPos_File_Money_XmlLink = TRUE;
 			break;
 		case 0x32:
-			memcpy(msg->sztype, L"VOIPMSG", sizeof(L"VOIPMSG"));
+			wcscpy_s(msg->sztype, 0x20, L"VOIPMSG");
 			isOther = TRUE;
 			break;
 		case 0x33:
-			memcpy(msg->sztype, L"Î¢ĞÅ³õÊ¼»¯", sizeof(L"Î¢ĞÅ³õÊ¼»¯"));
+			wcscpy_s(msg->sztype, 0x20, L"å¾®ä¿¡åˆå§‹åŒ–");
 			isOther = TRUE;
 			break;
 		case 0x34:
-			memcpy(msg->sztype, L"VOIPNOTIFY", sizeof(L"VOIPNOTIFY"));
+			wcscpy_s(msg->sztype, 0x20, L"VOIPNOTIFY");
 			isOther = TRUE;
 			break;
 		case 0x35:
-			memcpy(msg->sztype, L"VOIPINVITE", sizeof(L"VOIPINVITE"));
+			wcscpy_s(msg->sztype, 0x20, L"VOIPINVITE");
 			isOther = TRUE;
 			break;
 		case 0x3E:
-			memcpy(msg->sztype, L"Ğ¡ÊÓÆµ", sizeof(L"Ğ¡ÊÓÆµ"));
+			wcscpy_s(msg->sztype, 0x20, L"å°è§†é¢‘");
 			isRadioMessage = TRUE;
 			break;
 		case 0x270F:
-			memcpy(msg->sztype, L"SYSNOTICE", sizeof(L"SYSNOTICE"));
+			wcscpy_s(msg->sztype, 0x20, L"SYSNOTICE");
 			isOther = TRUE;
 			break;
 		case 0x2710:
-			//ÏµÍ³ÏûÏ¢
-			//ºì°ü
-			memcpy(msg->sztype, L"ÏµÍ³ÏûÏ¢", sizeof(L"ÏµÍ³ÏûÏ¢"));
+			//ç³»ç»Ÿæ¶ˆæ¯
+			//çº¢åŒ…
+			wcscpy_s(msg->sztype, 0x20, L"ç³»ç»Ÿæ¶ˆæ¯");
 			isSystemMessage = TRUE;
 			break;
 		case 0x2712:
-			//ÌáÏÖÏûÏ¢
-			memcpy(msg->sztype, L"ÌáÏÖÏûÏ¢", sizeof(L"ÌáÏÖÏûÏ¢"));
+			//æç°æ¶ˆæ¯
+			wcscpy_s(msg->sztype, 0x20, L"æç°æ¶ˆæ¯");
 			break;
 		default:
 			break;
@@ -188,209 +188,209 @@ void DealWithMsg(LPVOID Context)
 
 
 
-		wstring fullmessgaedata(msg->content);	//ÍêÕûµÄÏûÏ¢ÄÚÈİ
-		wchar_t* tempcontent = msg->content;	//ÍêÕûµÄÏûÏ¢ÄÚÈİ
+		wstring fullmessgaedata(msg->content);	//å®Œæ•´çš„æ¶ˆæ¯å†…å®¹
+		wchar_t* tempcontent = msg->content;	//å®Œæ•´çš„æ¶ˆæ¯å†…å®¹
 
-		//¸ù¾İÎ¢ĞÅIDÅĞ¶ÏÊÇ·ñÊÇºÃÓÑÏûÏ¢
+		//æ ¹æ®å¾®ä¿¡IDåˆ¤æ–­æ˜¯å¦æ˜¯å¥½å‹æ¶ˆæ¯
 		wstring wxid_wstr = msg->wxid;
 		if (wxid_wstr.find(L"@im.chatroom") != wxid_wstr.npos)
 		{
-			memcpy(msg->source, L"ÆóÒµÎ¢ĞÅÈºÏûÏ¢", sizeof(L"ÆóÒµÎ¢ĞÅÈºÏûÏ¢"));
+			wcscpy_s(msg->source, 0x400, L"ä¼ä¸šå¾®ä¿¡ç¾¤æ¶ˆæ¯");
 		}
 		else if (wxid_wstr.find(L"@chatroom") != wxid_wstr.npos)
 		{
-			memcpy(msg->source, L"ÈºÏûÏ¢", sizeof(L"ÈºÏûÏ¢"));
+			wcscpy_s(msg->source, 0x400, L"ç¾¤æ¶ˆæ¯");
 		}
 		else
 		{
-			memcpy(msg->source, L"ºÃÓÑÏûÏ¢", sizeof(L"ºÃÓÑÏûÏ¢"));
+			wcscpy_s(msg->source, 0x400, L"å¥½å‹æ¶ˆæ¯");
 			isFriendMsg = TRUE;
-			memcpy(msg->sendername, L"NULL", sizeof(L"NULL"));
+			wcscpy_s(msg->sendername, 0x100, L"NULL");
 
 		}
 
 
 
 
-		//½«Î¢ĞÅID×ªÎªÎ¢ĞÅêÇ³Æ/ÈºÃû³Æ 
+		//å°†å¾®ä¿¡IDè½¬ä¸ºå¾®ä¿¡æ˜µç§°/ç¾¤åç§° 
 		wstring transformwxid(msg->wxid);
 		swprintf_s(msg->wxname, L"%s", GetNickNameByWxid(transformwxid).c_str());
 
-		//½«Èº·¢ËÍÕßÎ¢ĞÅID×ª»»Îª·¢ËÍ×ÅêÇ³Æ
+		//å°†ç¾¤å‘é€è€…å¾®ä¿¡IDè½¬æ¢ä¸ºå‘é€ç€æ˜µç§°
 		if (isFriendMsg == FALSE)
 		{
-			//¸ù¾İÎ¢ĞÅID»ñÈ¡ÏêÏ¸ĞÅÏ¢ÕâÀïÓĞÎÊÌâ
+			//æ ¹æ®å¾®ä¿¡IDè·å–è¯¦ç»†ä¿¡æ¯è¿™é‡Œæœ‰é—®é¢˜
 			swprintf_s(msg->sendername, L"%s", GetNicknameByWxid(msg->sender));
 		}
 
 
-		//ÏÔÊ¾ÏûÏ¢ÄÚÈİ  ¹ıÂËÎŞ·¨ÏÔÊ¾µÄÏûÏ¢ ·ÀÖ¹±¼À£
+		//æ˜¾ç¤ºæ¶ˆæ¯å†…å®¹  è¿‡æ»¤æ— æ³•æ˜¾ç¤ºçš„æ¶ˆæ¯ é˜²æ­¢å¥”æºƒ
 		if (StrStrW(msg->wxid, L"gh"))
 		{
 			isFriendMsg = FALSE;
 
-			//Èç¹ûÊÇÁÄÌì»úÆ÷ÈË·¢À´µÄÏûÏ¢ ²¢ÇÒÏûÏ¢ÒÑ¾­·¢ËÍ¸ø»úÆ÷ÈË
+			//å¦‚æœæ˜¯èŠå¤©æœºå™¨äººå‘æ¥çš„æ¶ˆæ¯ å¹¶ä¸”æ¶ˆæ¯å·²ç»å‘é€ç»™æœºå™¨äºº
 			if ((StrCmpW(msg->wxid, ChatRobotWxID) == 0) && isSendTuLing)
 			{
 				SendTextMessage(tempwxid, msg->content);
 				isSendTuLing = FALSE;
 			}
-			//Èç¹ûÎ¢ĞÅIDÎªgh_3dfda90e39d6 ËµÃ÷ÊÇÊÕ¿îÏûÏ¢
+			//å¦‚æœå¾®ä¿¡IDä¸ºgh_3dfda90e39d6 è¯´æ˜æ˜¯æ”¶æ¬¾æ¶ˆæ¯
 			else if ((StrCmpW(msg->wxid, L"gh_3dfda90e39d6") == 0))
 			{
-				swprintf_s(msg->content, L"%s", L"Î¢ĞÅÊÕ¿îµ½ÕË");
+				swprintf_s(msg->content, L"%s", L"å¾®ä¿¡æ”¶æ¬¾åˆ°è´¦");
 			}
 			else
 			{
-				//Èç¹ûÎ¢ĞÅIDÖĞ´øÓĞgh ËµÃ÷ÊÇ¹«ÖÚºÅ
-				swprintf_s(msg->content, L"%s", L"¹«ÖÚºÅ·¢À´ÍÆÎÄ,ÇëÔÚÊÖ»úÉÏ²é¿´");
+				//å¦‚æœå¾®ä¿¡IDä¸­å¸¦æœ‰gh è¯´æ˜æ˜¯å…¬ä¼—å·
+				swprintf_s(msg->content, L"%s", L"å…¬ä¼—å·å‘æ¥æ¨æ–‡,è¯·åœ¨æ‰‹æœºä¸ŠæŸ¥çœ‹");
 
 			}
 		}
 
-		//´¦ÀíÍ¼Æ¬ÏûÏ¢ 
+		//å¤„ç†å›¾ç‰‡æ¶ˆæ¯ 
 		else if (isImageMessage == TRUE)
 		{
-			swprintf_s(msg->content, L"%s", L"ÊÕµ½Í¼Æ¬ÏûÏ¢");
+			swprintf_s(msg->content, L"%s", L"æ”¶åˆ°å›¾ç‰‡æ¶ˆæ¯");
 		}
 		else if (isRadioMessage == TRUE)
 		{
-			swprintf_s(msg->content, L"%s", L"ÊÕµ½ÊÓÆµÏûÏ¢,ÇëÔÚÊÖ»úÉÏ²é¿´");
+			swprintf_s(msg->content, L"%s", L"æ”¶åˆ°è§†é¢‘æ¶ˆæ¯,è¯·åœ¨æ‰‹æœºä¸ŠæŸ¥çœ‹");
 		}
 		else if (isVoiceMessage == TRUE)
 		{
-			swprintf_s(msg->content, L"%s", L"ÊÕµ½ÓïÒôÏûÏ¢,ÇëÔÚÊÖ»úÉÏ²é¿´");
+			swprintf_s(msg->content, L"%s", L"æ”¶åˆ°è¯­éŸ³æ¶ˆæ¯,è¯·åœ¨æ‰‹æœºä¸ŠæŸ¥çœ‹");
 		}
 		else if (isBusinessCardMessage == TRUE)
 		{
-			//×Ô¶¯Ìí¼ÓÃûÆ¬ºÃÓÑ
+			//è‡ªåŠ¨æ·»åŠ åç‰‡å¥½å‹
 			//AutoAddCardUser(fullmessgaedata);
-			swprintf_s(msg->content, L"%s", L"ÊÕµ½ÃûÆ¬ÏûÏ¢,ÒÑ×Ô¶¯Ìí¼ÓºÃÓÑ");
+			swprintf_s(msg->content, L"%s", L"æ”¶åˆ°åç‰‡æ¶ˆæ¯,å·²è‡ªåŠ¨æ·»åŠ å¥½å‹");
 
 		}
 		else if (isExpressionMessage == TRUE)
 		{
-			swprintf_s(msg->content, L"%s", L"ÊÕµ½±íÇéÏûÏ¢,ÇëÔÚÊÖ»úÉÏ²é¿´");
+			swprintf_s(msg->content, L"%s", L"æ”¶åˆ°è¡¨æƒ…æ¶ˆæ¯,è¯·åœ¨æ‰‹æœºä¸ŠæŸ¥çœ‹");
 		}
 		else if (isFriendRequestMessage == TRUE)
 		{
-			//×Ô¶¯Í¨¹ıºÃÓÑÇëÇó
+			//è‡ªåŠ¨é€šè¿‡å¥½å‹è¯·æ±‚
 			AutoAgreeUserRequest(fullmessgaedata);
-			swprintf_s(msg->content, L"%s", L"ÊÕµ½ºÃÓÑÇëÇó,ÒÑ×Ô¶¯Í¨¹ı");
+			swprintf_s(msg->content, L"%s", L"æ”¶åˆ°å¥½å‹è¯·æ±‚,å·²è‡ªåŠ¨é€šè¿‡");
 
 		}
-		//´¦ÀíXMLÎÄÕÂºÍ×Ô¶¯½ÓÊÕ×ªÕËÏûÏ¢
+		//å¤„ç†XMLæ–‡ç« å’Œè‡ªåŠ¨æ¥æ”¶è½¬è´¦æ¶ˆæ¯
 		else if (isPos_File_Money_XmlLink == TRUE)
 		{
-			//ÅĞ¶ÏÊÇ·ñÊÇ×ªÕËÏûÏ¢
-			//ÅĞ¶ÏÊÇ·ñÊÇ×ªÕËÏûÏ¢
+			//åˆ¤æ–­æ˜¯å¦æ˜¯è½¬è´¦æ¶ˆæ¯
+			//åˆ¤æ–­æ˜¯å¦æ˜¯è½¬è´¦æ¶ˆæ¯
 			if (StrStrW(tempcontent, L"<type>2000</type>"))
 			{
-				//×Ô¶¯ÊÕ¿î
-				memcpy(msg->sztype, L"×ªÕËÏûÏ¢", sizeof(L"×ªÕËÏûÏ¢"));
+				//è‡ªåŠ¨æ”¶æ¬¾
+				wcscpy_s(msg->sztype, 0x20, L"è½¬è´¦æ¶ˆæ¯");
 				AutoCllectMoney(fullmessgaedata, msg->wxid);
-				swprintf_s(msg->content, L"%s", L"ÊÕµ½×ªÕËÏûÏ¢,ÒÑ×Ô¶¯ÊÕ¿î");
+				swprintf_s(msg->content, L"%s", L"æ”¶åˆ°è½¬è´¦æ¶ˆæ¯,å·²è‡ªåŠ¨æ”¶æ¬¾");
 			}
-			//<type>5 </type> °üÀ¨XMLÎÄÕÂºÍ½øÈºÁ´½Ó
+			//<type>5 </type> åŒ…æ‹¬XMLæ–‡ç« å’Œè¿›ç¾¤é“¾æ¥
 			else if (StrStrW(tempcontent, L"<type>5</type>"))
 			{
-				//ÑûÇëÈëÈºµÄÁ´½Ó
-				if (fullmessgaedata.find(L"<![CDATA[ÑûÇëÄã¼ÓÈëÈºÁÄ]]></title>") != wstring::npos&&fullmessgaedata.find(L"<url><![CDATA[") != wstring::npos)
+				//é‚€è¯·å…¥ç¾¤çš„é“¾æ¥
+				if (fullmessgaedata.find(L"<![CDATA[é‚€è¯·ä½ åŠ å…¥ç¾¤èŠ]]></title>") != wstring::npos&&fullmessgaedata.find(L"<url><![CDATA[") != wstring::npos)
 				{
-					memcpy(msg->sztype, L"ÈºÑûÇë", sizeof(L"ÈºÑûÇë"));
-					swprintf_s(msg->content, L"%s", L"ÊÕµ½ÈºÑûÇë,ÇëÔÚÊÖ»úÉÏ²é¿´");
+					wcscpy_s(msg->sztype, 0x20, L"ç¾¤é‚€è¯·");
+					swprintf_s(msg->content, L"%s", L"æ”¶åˆ°ç¾¤é‚€è¯·,è¯·åœ¨æ‰‹æœºä¸ŠæŸ¥çœ‹");
 				}
-				//ÁôÑÔÈëÑ¡Í¨Öª
-				else if (fullmessgaedata.find(L"ÁôÑÔÈëÑ¡Í¨Öª") != wstring::npos)
+				//ç•™è¨€å…¥é€‰é€šçŸ¥
+				else if (fullmessgaedata.find(L"ç•™è¨€å…¥é€‰é€šçŸ¥") != wstring::npos)
 				{
-					memcpy(msg->sztype, L"ÁôÑÔÈëÑ¡", sizeof(L"ÁôÑÔÈëÑ¡"));
-					swprintf_s(msg->content, L"%s", L"¹«ÖÚºÅÁôÑÔÈëÑ¡Í¨Öª,ÇëÔÚÊÖ»úÉÏ²é¿´");
+					wcscpy_s(msg->sztype, 0x20, L"ç•™è¨€å…¥é€‰");
+					swprintf_s(msg->content, L"%s", L"å…¬ä¼—å·ç•™è¨€å…¥é€‰é€šçŸ¥,è¯·åœ¨æ‰‹æœºä¸ŠæŸ¥çœ‹");
 				}
 				else
 				{
-					//·ñÔò ËµÃ÷ÊÇXMLÎÄÕÂÁ´½Ó
-					memcpy(msg->sztype, L"XMLÎÄÕÂÏûÏ¢", sizeof(L"XMLÎÄÕÂÏûÏ¢"));
-					swprintf_s(msg->content, L"%s", L"ÊÕµ½XMLÎÄÕÂÏûÏ¢,ÇëÔÚÊÖ»úÉÏ²é¿´");
+					//å¦åˆ™ è¯´æ˜æ˜¯XMLæ–‡ç« é“¾æ¥
+					wcscpy_s(msg->sztype, 0x20, L"XMLæ–‡ç« æ¶ˆæ¯");
+					swprintf_s(msg->content, L"%s", L"æ”¶åˆ°XMLæ–‡ç« æ¶ˆæ¯,è¯·åœ¨æ‰‹æœºä¸ŠæŸ¥çœ‹");
 				}
 			}
-			//ÎÄ¼şÏûÏ¢
+			//æ–‡ä»¶æ¶ˆæ¯
 			else if (StrStrW(tempcontent, L"<type>6</type>"))
 			{
-				memcpy(msg->sztype, L"ÎÄ¼şÏûÏ¢", sizeof(L"ÎÄ¼şÏûÏ¢"));
-				swprintf_s(msg->content, L"%s", L"ÊÕµ½ÎÄ¼ş Çë¼°Ê±²é¿´");
+				wcscpy_s(msg->sztype, 0x20, L"æ–‡ä»¶æ¶ˆæ¯");
+				swprintf_s(msg->content, L"%s", L"æ”¶åˆ°æ–‡ä»¶ è¯·åŠæ—¶æŸ¥çœ‹");
 			}
-			//¹²ÏíÊµÊ±Î»ÖÃÏûÏ¢
+			//å…±äº«å®æ—¶ä½ç½®æ¶ˆæ¯
 			else if (StrStrW(tempcontent, L"<type>17</type>"))
 			{
-				memcpy(msg->sztype, L"¹²ÏíÊµÊ±Î»ÖÃ", sizeof(L"¹²ÏíÊµÊ±Î»ÖÃ"));
-				swprintf_s(msg->content, L"%s", L"ÊÕµ½¹²ÏíÊµÊ±Î»ÖÃ ÇëÔÚÊÖ»úÉÏ²é¿´");
+				wcscpy_s(msg->sztype, 0x20, L"å…±äº«å®æ—¶ä½ç½®");
+				swprintf_s(msg->content, L"%s", L"æ”¶åˆ°å…±äº«å®æ—¶ä½ç½® è¯·åœ¨æ‰‹æœºä¸ŠæŸ¥çœ‹");
 			}
-			//ºÏ²¢×ª·¢µÄÁÄÌì¼ÇÂ¼
-			else if (StrStrW(tempcontent, L"µÄÁÄÌì¼ÇÂ¼</title>"))
+			//åˆå¹¶è½¬å‘çš„èŠå¤©è®°å½•
+			else if (StrStrW(tempcontent, L"çš„èŠå¤©è®°å½•</title>"))
 			{
-				memcpy(msg->sztype, L"ÁÄÌì¼ÇÂ¼ÏûÏ¢", sizeof(L"ÁÄÌì¼ÇÂ¼ÏûÏ¢"));
-				swprintf_s(msg->content, L"%s", L"ÊÕµ½ºÏ²¢×ª·¢µÄÁÄÌì¼ÇÂ¼ ÇëÔÚÊÖ»úÉÏ²é¿´");
+				wcscpy_s(msg->sztype, 0x20, L"èŠå¤©è®°å½•æ¶ˆæ¯");
+				swprintf_s(msg->content, L"%s", L"æ”¶åˆ°åˆå¹¶è½¬å‘çš„èŠå¤©è®°å½• è¯·åœ¨æ‰‹æœºä¸ŠæŸ¥çœ‹");
 			}
 		}
 
 		else if (isLocationMessage == TRUE)
 		{
-			swprintf_s(msg->content, L"%s", L"ÊÕµ½Î»ÖÃÏûÏ¢,ÇëÔÚÊÖ»úÉÏ²é¿´");
+			swprintf_s(msg->content, L"%s", L"æ”¶åˆ°ä½ç½®æ¶ˆæ¯,è¯·åœ¨æ‰‹æœºä¸ŠæŸ¥çœ‹");
 		}
 		else if (isSystemMessage == TRUE)
 		{
-			//ÔÚÕâÀï´¦Àí¼ÓÈëÈºÁÄÏûÏ¢
-			if ((StrStrW(tempcontent, L"ÒÆ³öÁËÈºÁÄ") || StrStrW(tempcontent, L"¼ÓÈëÁËÈºÁÄ")))
+			//åœ¨è¿™é‡Œå¤„ç†åŠ å…¥ç¾¤èŠæ¶ˆæ¯
+			if ((StrStrW(tempcontent, L"ç§»å‡ºäº†ç¾¤èŠ") || StrStrW(tempcontent, L"åŠ å…¥äº†ç¾¤èŠ")))
 			{
 				wcscpy_s(msg->content, wcslen(tempcontent) + 1, tempcontent);
 			}
 			else
 			{
-				swprintf_s(msg->content, L"%s", L"ÊÕµ½ºì°ü»òÏµÍ³ÏûÏ¢,ÇëÔÚÊÖ»úÉÏ²é¿´");
+				swprintf_s(msg->content, L"%s", L"æ”¶åˆ°çº¢åŒ…æˆ–ç³»ç»Ÿæ¶ˆæ¯,è¯·åœ¨æ‰‹æœºä¸ŠæŸ¥çœ‹");
 			}
 		}
-		//¹ıÂËÍêËùÓĞÏûÏ¢Ö®ºó
+		//è¿‡æ»¤å®Œæ‰€æœ‰æ¶ˆæ¯ä¹‹å
 		else
 		{
-			//ÅĞ¶ÏÏûÏ¢³¤¶È Èç¹û³¤¶È³¬¹ı¾Í²»ÏÔÊ¾
+			//åˆ¤æ–­æ¶ˆæ¯é•¿åº¦ å¦‚æœé•¿åº¦è¶…è¿‡å°±ä¸æ˜¾ç¤º
 			if (wcslen(tempcontent) > 200)
 			{
-				swprintf_s(msg->content, L"%s", L"ÏûÏ¢ÄÚÈİ¹ı³¤ ÒÑ¾­¹ıÂË");
+				swprintf_s(msg->content, L"%s", L"æ¶ˆæ¯å†…å®¹è¿‡é•¿ å·²ç»è¿‡æ»¤");
 			}
 		}
 
 
-		//ÕâÀï´¦Àí×Ô¶¯ÁÄÌì
+		//è¿™é‡Œå¤„ç†è‡ªåŠ¨èŠå¤©
 		if (isFriendMsg == TRUE && g_AutoChat == TRUE && isSendTuLing == FALSE)
 		{
 
-			//±£´æÒ»ÏÂÎ¢ĞÅID
+			//ä¿å­˜ä¸€ä¸‹å¾®ä¿¡ID
 			wcscpy_s(tempwxid, wcslen(msg->wxid) + 1, msg->wxid);
-			//ÄÃµ½ÏûÏ¢ÄÚÈİ ·¢¸ø»úÆ÷ÈË
+			//æ‹¿åˆ°æ¶ˆæ¯å†…å®¹ å‘ç»™æœºå™¨äºº
 			SendTextMessage((wchar_t*)ChatRobotWxID, msg->content);
 			isSendTuLing = TRUE;
 		}
 
 
-		//·¢ËÍµ½¿ØÖÆ¶Ë
-		HWND hWnd = FindWindow(NULL, TEXT("Î¢ĞÅÖúÊÖ"));
+		//å‘é€åˆ°æ§åˆ¶ç«¯
+		HWND hWnd = FindWindow(NULL, TEXT("å¾®ä¿¡åŠ©æ‰‹"));
 		if (hWnd == NULL)
 		{
-			OutputDebugStringA("Î´²éÕÒµ½Î¢ĞÅÖúÊÖ´°¿Ú");
+			OutputDebugStringA("æœªæŸ¥æ‰¾åˆ°å¾®ä¿¡åŠ©æ‰‹çª—å£");
 			return;
 		}
 
 		COPYDATASTRUCT chatmsg;
-		chatmsg.dwData = WM_ShowChatRecord;//±£´æÒ»¸öÊıÖµ, ¿ÉÒÔÓÃÀ´×÷±êÖ¾µÈ
-		chatmsg.cbData = sizeof(ChatMessageData);// strlen(szSendBuf);//´ı·¢ËÍµÄÊı¾İµÄ³¤
-		chatmsg.lpData = msg;// szSendBuf;//´ı·¢ËÍµÄÊı¾İµÄÆğÊ¼µØÖ·(¿ÉÒÔÎªNULL)
+		chatmsg.dwData = WM_ShowChatRecord;//ä¿å­˜ä¸€ä¸ªæ•°å€¼, å¯ä»¥ç”¨æ¥ä½œæ ‡å¿—ç­‰
+		chatmsg.cbData = sizeof(ChatMessageData);// strlen(szSendBuf);//å¾…å‘é€çš„æ•°æ®çš„é•¿
+		chatmsg.lpData = msg;// szSendBuf;//å¾…å‘é€çš„æ•°æ®çš„èµ·å§‹åœ°å€(å¯ä»¥ä¸ºNULL)
 		SendMessage(hWnd, WM_COPYDATA, (WPARAM)hWnd, (LPARAM)&chatmsg);
 
 		delete msg;
 	}
 	catch (...)
 	{
-		OutputDebugStringA("ÁÄÌì¼ÇÂ¼³öÒì³£ÁË");
+		OutputDebugStringA("èŠå¤©è®°å½•å‡ºå¼‚å¸¸äº†");
 	}
 
 	
@@ -399,12 +399,12 @@ void DealWithMsg(LPVOID Context)
 
 
 //************************************************************
-// º¯ÊıÃû³Æ: SendMessage
-// º¯ÊıËµÃ÷: ½«½ÓÊÕµ½µÄÏûÏ¢·¢ËÍ¸ø¿Í»§¶Ë
-// ×÷    Õß: GuiShou
-// Ê±    ¼ä: 2019/7/6
-// ²Î    Êı: void
-// ·µ »Ø Öµ: void 
+// å‡½æ•°åç§°: SendMessage
+// å‡½æ•°è¯´æ˜: å°†æ¥æ”¶åˆ°çš„æ¶ˆæ¯å‘é€ç»™å®¢æˆ·ç«¯
+// ä½œ    è€…: GuiShou
+// æ—¶    é—´: 2019/7/6
+// å‚    æ•°: void
+// è¿” å› å€¼: void 
 //************************************************************
 void __stdcall SendWxMessage(DWORD r_eax)
 {
@@ -415,15 +415,15 @@ void __stdcall SendWxMessage(DWORD r_eax)
 	try
 	{
 		ChatMessageData* msg = new ChatMessageData;
-		//È¡³öÏûÏ¢ÀàĞÍ
+		//å–å‡ºæ¶ˆæ¯ç±»å‹
 		msg->dwtype = *((DWORD*)(r_eax + MsgTypeOffset));
 	
-		//È¡³öÏûÏ¢ÄÚÈİ
+		//å–å‡ºæ¶ˆæ¯å†…å®¹
 		LPVOID pContent = *((LPVOID *)(r_eax + MsgContentOffset));
 		swprintf_s(msg->content, L"%s", (wchar_t*)pContent);
 	
 	
-		//È¡³öÎ¢ĞÅID/ÈºID
+		//å–å‡ºå¾®ä¿¡ID/ç¾¤ID
 		LPVOID pWxid = *((LPVOID *)(r_eax + WxidOffset));
 		swprintf_s(msg->wxid, L"%s", (wchar_t*)pWxid);
 	
@@ -434,22 +434,22 @@ void __stdcall SendWxMessage(DWORD r_eax)
 	
 	
 	
-		//È¡³öÏûÏ¢·¢ËÍÕß
+		//å–å‡ºæ¶ˆæ¯å‘é€è€…
 		LPVOID pSender = *((LPVOID *)(r_eax + GroupMsgSenderOffset));
 		swprintf_s(msg->sender, L"%s", (wchar_t*)pSender);
 		
 
-		//È¡³öÏûÏ¢·¢ËÍÕß
+		//å–å‡ºæ¶ˆæ¯å‘é€è€…
 		LPVOID pSource = *((LPVOID *)(r_eax + MsgSourceOffset));
 		swprintf_s(msg->source, L"%s", (wchar_t*)pSource);
 	
-		//´´½¨Ïß³Ì´¦ÀíÏûÏ¢
+		//åˆ›å»ºçº¿ç¨‹å¤„ç†æ¶ˆæ¯
 		HANDLE hThread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)DealWithMsg, msg, 0, NULL);
 		CloseHandle(hThread);
 	}
 	catch (...)
 	{
-		OutputDebugStringA("½ÓÊÕÏûÏ¢Òì³£ÁË....");
+		OutputDebugStringA("æ¥æ”¶æ¶ˆæ¯å¼‚å¸¸äº†....");
 	}
 	
 
@@ -457,12 +457,12 @@ void __stdcall SendWxMessage(DWORD r_eax)
 
 
 //************************************************************
-// º¯ÊıÃû³Æ: GetMsgByAddress
-// º¯ÊıËµÃ÷: ´ÓµØÖ·ÖĞ»ñÈ¡ÏûÏ¢ÄÚÈİ
-// ×÷    Õß: GuiShou
-// Ê±    ¼ä: 2019/7/6
-// ²Î    Êı: DWORD memAddress  Ä¿±êµØÖ·
-// ·µ »Ø Öµ: LPCWSTR	ÏûÏ¢ÄÚÈİ
+// å‡½æ•°åç§°: GetMsgByAddress
+// å‡½æ•°è¯´æ˜: ä»åœ°å€ä¸­è·å–æ¶ˆæ¯å†…å®¹
+// ä½œ    è€…: GuiShou
+// æ—¶    é—´: 2019/7/6
+// å‚    æ•°: DWORD memAddress  ç›®æ ‡åœ°å€
+// è¿” å› å€¼: LPCWSTR	æ¶ˆæ¯å†…å®¹
 //************************************************************
 std::wstring GetMsgByAddress(DWORD memAddress)
 {
